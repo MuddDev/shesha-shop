@@ -1,0 +1,18 @@
+{
+  "site": {
+    "name": "Shesha Shop",
+    "tagline": "Преміум рушники та текстиль"
+  },
+  "logo": {
+    "image": "",
+    "alt": ""
+  },
+  "announcement": {
+    "title": "BEST OFFER",
+    "message": "Безкоштовна доставка при замовленні від 3 000 ₴",
+    "button": {
+      "text": "Купити зараз",
+      "link": "/collections/all"
+    }
+  }
+}

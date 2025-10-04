@@ -1,11 +1,10 @@
-// composables/useSettings.js
 export const useSettings = async () => {
-  const { data } = await useAsyncData('settings', () => queryContent('/settings').findOne())
+  const { data } = await useAsyncData('settings', () => $fetch('/content/settings.json'))
 
-  // Безпечні дефолти
   const site = computed(() => data.value?.site ?? { name: '', tagline: '' })
   const logo = computed(() => data.value?.logo ?? { image: '', alt: '' })
   const hasImage = computed(() => !!logo.value?.image)
+  const announcement = computed(() => data.value?.announcement ?? null)
 
-  return { site, logo, hasImage }
+  return { site, logo, hasImage, announcement }
 }
