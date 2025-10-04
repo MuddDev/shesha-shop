@@ -1,1 +1,28 @@
-.logo {  display: inline-flex;  align-items: center;  text-decoration: none;  color: inherit;}.logo-inner {  display: flex;  align-items: center;  justify-content: center;}.logo-text {  font-family: var(--font-primary);  font-size: var(--fs-lg);  font-weight: 600;  color: var(--clr-text);  text-transform: uppercase;  letter-spacing: 0.05em;}img {  display: block;  max-height: 48px;  width: auto;  object-fit: contain;}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-family: var(--font-primary);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--clr-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+img {
+  display: block;
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
+}
