@@ -1,0 +1,37 @@
+@use '../abstracts/mixins' as *;
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+  color: #222;
+  font-family: var(--font-primary);
+
+  // плавна поява сторінок
+  animation: fadeIn 0.4s ease-in-out;
+
+  .main {
+    flex: 1;
+    padding: 2rem 0;
+
+    @include respond(mobile) {
+      padding: 1rem 0;
+    }
+  }
+}
+.layouts-header {
+  background-color: var(--clr-bg-header);
+}
+
+// анімація появи
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

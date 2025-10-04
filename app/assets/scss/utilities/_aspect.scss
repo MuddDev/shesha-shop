@@ -1,0 +1,23 @@
+/* =========================================================
+   🎞️ Aspect Ratio Utilities
+   ========================================================= */
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.aspect-landscape {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-video {
+  aspect-ratio: 21 / 9;
+}
+
+.aspect-tall {
+  aspect-ratio: 9 / 16;
+}
