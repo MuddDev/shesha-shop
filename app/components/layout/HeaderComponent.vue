@@ -8,6 +8,5 @@ import NavigationComponent from '~/components/navigation/NavigationComponent.vue
         <NavigationComponent />
       </div>
     </div>
-
   </div>
 </template>

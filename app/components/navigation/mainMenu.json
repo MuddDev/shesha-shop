@@ -1,0 +1,6 @@
+[
+  { "title": "Головна", "link": "/" },
+  { "title": "Каталог", "link": "/collections/all" },
+  { "title": "Рушники банні", "link": "/collections/rushnyky-banni" },
+  { "title": "Контакти", "link": "/contact" }
+]
