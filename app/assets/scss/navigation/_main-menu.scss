@@ -1,0 +1,16 @@
+.menu {
+  &-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--clr-bg);
+    gap: var(--space-4);
+  }
+  &-item {
+    a {
+      font-family: var(--font-primary);
+      font-weight: 900;
+    }
+  }
+}
