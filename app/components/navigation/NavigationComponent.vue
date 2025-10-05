@@ -1,16 +1,26 @@
 <script setup>
-import LogoComponent from '~/components/ui/LogoComponent.vue'
-import MainMenu from '~/components/navigation/MainMenu.vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import NavigationDescComponent from '~/components/navigation/NavigationDescComponent.vue'
+import NavigationMobileComponent from '~/components/navigation/NavigationMobileComponent.vue'
+
+const isMobile = ref(false)
+
+function checkViewport() {
+  isMobile.value = window.innerWidth <= 1024
+}
+
+onMounted(() => {
+  checkViewport()
+  window.addEventListener('resize', checkViewport)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkViewport)
+})
 </script>
+
 <template>
   <div class="navigation-inner__box">
-    <div class="navigation-inner__logo">
-      <LogoComponent />
-    </div>
-    <div class="navigation-inner__menu">
-      <MainMenu />
-    </div>
-    <div class="navigation-inner__contact"></div>
-    <div class="navigation-inner__cart-drawer"></div>
+    <component :is="isMobile ? NavigationMobileComponent : NavigationDescComponent" />
   </div>
 </template>

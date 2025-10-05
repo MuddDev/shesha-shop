@@ -1,3 +1,4 @@
+@use "../abstracts/mixins" as *;
 .announcement {
   background-color: var(--clr-danger);
   color: var(--clr-muted);
@@ -9,6 +10,9 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
+    @include respond(mobile) {
+      gap: 0.3rem;
+    }
   }
 
   &__title {
@@ -18,6 +22,9 @@
     font-size: clamp(0.2rem, 1vw, 0.685rem);
     background: var(--clr-bg-header);
     padding: var(--space-1);
+    @include respond(mobile) {
+      display: none;
+    }
   }
 
   &__message {

@@ -1,4 +1,11 @@
 .navigation {
+  &-desc,
+  &-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
   &-inner {
     &__box {
       display: flex;

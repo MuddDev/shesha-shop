@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       shopifyToken: process.env.NUXT_PUBLIC_SHOPIFY_TOKEN,
-      shopifyDomain: process.env.NUXT_PUBLIC_SHOPIFY_DOMAIN || 'sheshashop.myshopify.com'
+      shopifyDomain: process.env.NUXT_PUBLIC_SHOPIFY_DOMAIN,
+      shopifyApiVersion: process.env.NUXT_PUBLIC_SHOPIFY_API_VERSION || '2025-04'
     }
   },
 
@@ -22,12 +23,9 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { charset: 'utf-8' }
       ],
+
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
     }
-  },
-
-  content: {
-    dir: 'content'
   },
 
   image: {
@@ -52,5 +50,13 @@ export default defineNuxtConfig({
     ]
   },
 
+  vite: {
+    css: {
+      devSourcemap: true
+    },
+    build: {
+      cssCodeSplit: false
+    }
+  },
   devtools: { enabled: true }
 })

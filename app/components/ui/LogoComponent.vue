@@ -1,5 +1,9 @@
 <script setup>
-const { site, logo, hasImage } = await useSettings()
+import siteData from '@/data/site.json'
+
+const site = siteData.site
+const logo = siteData.logo
+const hasImage = logo.image && logo.image.trim().length > 0
 </script>
 
 <template>
@@ -21,7 +25,8 @@ const { site, logo, hasImage } = await useSettings()
       </template>
 
       <template v-else>
-        <h1 class="logo-text">{{ site.name || 'Shesha Shop' }}</h1>
+        <h1 class="logo-text">{{ site.name }}</h1>
+        <span class="logo-tagline">{{ site.tagline }}</span>
       </template>
     </div>
   </NuxtLink>
