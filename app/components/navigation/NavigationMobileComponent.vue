@@ -10,6 +10,13 @@ import NavigationMobileMenu from '@/components/navigation/NavigationMobileMenu.v
     <div class="navigation-inner__logo">
       <LogoComponent />
     </div>
-    <div class="navigation-inner__cart-drawer"><h3>Cart</h3></div>
+    <div class="navigation-inner__actions">
+      <div class="navigation-inner__search">
+        <SearchButton />
+      </div>
+      <div class="navigation-inner__cart-drawer">
+        <CartIcon />
+      </div>
+    </div>
   </div>
 </template>
