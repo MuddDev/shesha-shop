@@ -1,8 +1,11 @@
 export default defineNuxtConfig({
   css: ['@/assets/scss/main.scss'],
 
-  modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/fonts', '@nuxt/scripts'],
-
+  modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/fonts', '@nuxt/scripts', '@nuxt/icon'],
+  icon: {
+    mode: 'css',
+    cssLayer: 'base'
+  },
   runtimeConfig: {
     public: {
       shopifyToken: process.env.NUXT_PUBLIC_SHOPIFY_TOKEN,

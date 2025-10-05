@@ -1,0 +1,98 @@
+.cart-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
+
+  &__image {
+    flex-shrink: 0;
+
+    img {
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+
+  &__details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.2;
+  }
+
+  &__variant {
+    font-size: 0.85rem;
+    color: #777;
+  }
+
+  &__price-qty {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.4rem;
+  }
+
+  &__price {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  &__qty {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.2rem 0.4rem;
+
+    span {
+      min-width: 24px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+  }
+
+  &__qty-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #e78a2f;
+    }
+  }
+
+  &__remove {
+    position: absolute;
+    top: 0.75rem;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    .material-icons {
+      font-size: 20px;
+      color: #999;
+      transition: color 0.2s ease;
+    }
+
+    &:hover .material-icons {
+      color: #e84b4b;
+    }
+  }
+}
