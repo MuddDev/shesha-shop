@@ -1,16 +1,120 @@
-.menu {
-  &-list {
+.main-nav {
+  &__list {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
-    color: var(--clr-bg);
-    gap: var(--space-4);
   }
-  &-item {
-    a {
-      font-family: var(--font-primary);
-      font-weight: 900;
+
+  &__item {
+    position: relative;
+
+    &:hover > .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
     }
+  }
+
+  &__link {
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--clr-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.4px;
+
+    &:hover {
+      color: #e78a2f;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0%;
+      height: 2px;
+      background: #e78a2f;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+
+    &:hover::after {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  bottom: -10rem;
+  left: 0;
+  transform: translate(-50%, 12px);
+  min-width: 240px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  padding: 1rem 0;
+  list-style: none;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s ease;
+
+  &__item {
+    position: relative;
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    padding: 0 1.5rem;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border-radius: 6px;
+
+    &:hover {
+      background: #fafafa;
+      color: #e78a2f;
+      padding-left: 1.75rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      background: transparent;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+    }
+
+    &:hover::before {
+      background: #e78a2f;
+    }
+  }
+}
+
+.main-nav__item:hover {
+  .main-nav__link {
+    text-shadow: 0 0 8px rgba(231, 138, 47, 0.15);
   }
 }

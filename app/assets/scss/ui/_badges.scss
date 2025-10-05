@@ -1,0 +1,50 @@
+/* ================================
+   BADGE STYLES
+   Використовується в меню, карточках тощо
+   ================================ */
+
+.badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+
+  &[data-type="sale"] {
+    background: #e78a2f;
+  }
+
+  &[data-type="hot"] {
+    background: #e84b4b;
+  }
+
+  &[data-type="new"] {
+    background: #56c271;
+  }
+
+  &[data-type="bestseller"] {
+    background: #3498db;
+  }
+
+  &[data-type="limited"] {
+    background: #8e44ad;
+  }
+
+  /* варіант, якщо потрібно inline у рядку з текстом */
+  &--inline {
+    position: static;
+    transform: none;
+    margin-left: 0.5rem;
+    top: auto;
+    left: auto;
+  }
+}
