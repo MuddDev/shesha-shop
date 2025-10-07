@@ -1,7 +1,7 @@
 /* =========================================================
    🧱 Container System — SheshaShop
    ========================================================= */
-
+@use "../abstracts/mixins" as *;
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -20,8 +20,11 @@
 
 .container--full {
   max-width: 100%;
-  padding-inline: 0;
   padding: 0 1rem;
+
+  @include respond(mobile) {
+    padding: 0 .7rem;
+  }
 }
 
 /* Зручно для секцій */
