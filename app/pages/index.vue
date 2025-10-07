@@ -7,9 +7,9 @@ import FeaturedCollections from '~/components/collection/featured/FeaturedCollec
       :handles="[
         'rushniki-bili',
         'sale-50',
-        'rushniki-bili',
-        'rushniki-bili',
-        'rushniki-bili',
+        'rushniki-banni',
+        'rushniki-dlya-nig',
+        'rushniki-dlya-golovaruki',
         'rushniki-bili',
         'rushniki-bili',
         'rushniki-bili',
