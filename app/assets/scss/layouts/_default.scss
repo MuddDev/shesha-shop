@@ -8,7 +8,6 @@
   color: #222;
   font-family: var(--font-primary);
 
-  // плавна поява сторінок
   animation: fadeIn 0.4s ease-in-out;
 
   .main {
@@ -23,7 +22,6 @@
   background-color: var(--clr-bg-header);
 }
 
-// анімація появи
 @keyframes fadeIn {
   from {
     opacity: 0;

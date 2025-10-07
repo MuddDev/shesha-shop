@@ -7,7 +7,7 @@ import announcement from '@/components/announcement-bar/announcement.json'
     v-if="announcement"
     class="announcement"
   >
-    <div class="announcement-inner container">
+    <div class="announcement-inner container--full">
       <span class="announcement__title">
         {{ announcement.title }}
       </span>

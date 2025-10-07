@@ -1,5 +1,6 @@
 <script setup>
 import FeaturedCollections from '~/components/collection/featured/FeaturedCollections.vue'
+import PromoGrid from "~/components/promo/promo-grid/PromoGrid.vue";
 </script>
 <template>
   <section class="featured-collections">
@@ -17,5 +18,8 @@ import FeaturedCollections from '~/components/collection/featured/FeaturedCollec
         'rushniki-bili'
       ]"
     />
+  </section>
+  <section class="promo">
+    <PromoGrid :content="promoSale" />
   </section>
 </template>
