@@ -11,11 +11,11 @@ import PromoGrid from '~/components/promo/promo-grid/PromoGrid.vue'
         'rushniki-banni',
         'rushniki-dlya-nig',
         'rushniki-dlya-golovaruki',
-        'rushniki-bili',
-        'rushniki-bili',
-        'rushniki-bili',
-        'rushniki-bili',
-        'rushniki-bili'
+        'skatertyny',
+        'pokryvala',
+        'rushnyk-khalat',
+        'postilna-bilyzna',
+        'servetky'
       ]"
     />
   </section>
