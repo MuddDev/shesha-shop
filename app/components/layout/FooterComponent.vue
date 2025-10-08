@@ -8,20 +8,26 @@ const { site, logo, footer } = siteData
   <footer class="footer">
     <div class="container--full">
       <div class="footer__inner">
-
         <div class="footer__col footer__col--logo">
-          <NuxtLink to="/" class="footer__logo">
+          <NuxtLink
+            to="/"
+            class="footer__logo"
+          >
             <img
-                v-if="logo.image"
-                :src="logo.image"
-                :alt="logo.alt"
-                class="footer__logo-img"
+              v-if="logo.image"
+              :src="logo.image"
+              :alt="logo.alt"
+              class="footer__logo-img"
             />
             <span v-else>{{ site.name }}</span>
           </NuxtLink>
-          <p v-if="site.tagline" class="footer__tagline">{{ site.tagline }}</p>
+          <p
+            v-if="site.tagline"
+            class="footer__tagline"
+          >
+            {{ site.tagline }}
+          </p>
         </div>
-
 
         <div class="footer__col footer__col--links">
           <ul>
@@ -31,34 +37,40 @@ const { site, logo, footer } = siteData
           </ul>
         </div>
 
-
         <div class="footer__col footer__col--contact">
           <p>{{ footer.address }}</p>
           <a :href="`mailto:${footer.email}`">{{ footer.email }}</a>
         </div>
 
-
         <div class="footer__col footer__col--socials">
           <ul>
             <li v-if="footer.socials.instagram">
               <Icon
-                  class="cart__icon"
-                  name="mdi:instagram"
-                  size="1rem"
-                  mode="svg"
-                  style="color: white"
+                class="cart__icon"
+                name="mdi:instagram"
+                size="1rem"
+                mode="svg"
+                style="color: white"
               />
-              <a :href="footer.socials.instagram" target="_blank">Instagram</a>
+              <a
+                :href="footer.socials.instagram"
+                target="_blank"
+                >Instagram</a
+              >
             </li>
             <li v-if="footer.socials.facebook">
               <Icon
-                  class="cart__icon"
-                  name="mdi:facebook-box"
-                  size="1rem"
-                  mode="svg"
-                  style="color: white"
+                class="cart__icon"
+                name="mdi:facebook-box"
+                size="1rem"
+                mode="svg"
+                style="color: white"
               />
-              <a :href="footer.socials.facebook" target="_blank">Facebook</a>
+              <a
+                :href="footer.socials.facebook"
+                target="_blank"
+                >Facebook</a
+              >
             </li>
           </ul>
         </div>

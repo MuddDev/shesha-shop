@@ -1,6 +1,6 @@
 <script setup>
 import FeaturedCollections from '~/components/collection/featured/FeaturedCollections.vue'
-import PromoGrid from "~/components/promo/promo-grid/PromoGrid.vue";
+import PromoGrid from '~/components/promo/promo-grid/PromoGrid.vue'
 </script>
 <template>
   <section class="featured-collections">
