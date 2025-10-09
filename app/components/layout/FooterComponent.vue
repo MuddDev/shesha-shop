@@ -1,11 +1,15 @@
 <script setup>
-import siteData from '@/data/site.json'
+const content = useContentStore()
 
-const { site, logo, footer } = siteData
+await content.fetch('footer_content', { eq: { active: true }, limit: 1 })
+const footer = content.getOne('footer_content')
 </script>
 
 <template>
-  <footer class="footer">
+  <footer
+    v-if="footer"
+    class="footer"
+  >
     <div class="container--full">
       <div class="footer__inner">
         <div class="footer__col footer__col--logo">
@@ -14,18 +18,19 @@ const { site, logo, footer } = siteData
             class="footer__logo"
           >
             <img
-              v-if="logo.image"
-              :src="logo.image"
-              :alt="logo.alt"
+              v-if="footer.logo_image"
+              :src="footer.logo_image"
+              :alt="footer.logo_alt"
               class="footer__logo-img"
             />
-            <span v-else>{{ site.name }}</span>
+            <span v-else>{{ footer.site_name }}</span>
           </NuxtLink>
+
           <p
-            v-if="site.tagline"
+            v-if="footer.tagline"
             class="footer__tagline"
           >
-            {{ site.tagline }}
+            {{ footer.tagline }}
           </p>
         </div>
 
@@ -44,30 +49,26 @@ const { site, logo, footer } = siteData
 
         <div class="footer__col footer__col--socials">
           <ul>
-            <li v-if="footer.socials.instagram">
+            <li v-if="footer.instagram">
               <Icon
-                class="cart__icon"
                 name="mdi:instagram"
                 size="1rem"
-                mode="svg"
                 style="color: white"
               />
               <a
-                :href="footer.socials.instagram"
+                :href="footer.instagram"
                 target="_blank"
                 >Instagram</a
               >
             </li>
-            <li v-if="footer.socials.facebook">
+            <li v-if="footer.facebook">
               <Icon
-                class="cart__icon"
                 name="mdi:facebook-box"
                 size="1rem"
-                mode="svg"
                 style="color: white"
               />
               <a
-                :href="footer.socials.facebook"
+                :href="footer.facebook"
                 target="_blank"
                 >Facebook</a
               >
@@ -77,7 +78,7 @@ const { site, logo, footer } = siteData
       </div>
 
       <div class="footer__bottom">
-        <p>© {{ new Date().getFullYear() }} {{ site.name }}. Всі права захищені.</p>
+        <p>© {{ new Date().getFullYear() }} {{ footer.site_name }}. Всі права захищені.</p>
       </div>
     </div>
   </footer>
