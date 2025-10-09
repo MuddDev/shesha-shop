@@ -1,20 +1,15 @@
 <script setup>
-import { ref, computed } from 'vue'
 import { useCartStore } from '@/stores/useCartStore'
 import CartDrawer from '~/components/cart/CartDrawer.vue'
 
 const cart = useCartStore()
-const isOpen = ref(false)
-const toggleCart = () => (isOpen.value = !isOpen.value)
-
-const itemCount = computed(() => cart.totalItems || 0)
 </script>
 
 <template>
   <div class="cart">
     <button
       class="cart__button"
-      @click="toggleCart"
+      @click="cart.toggleCart"
       aria-label="Відкрити кошик"
     >
       <Icon
@@ -24,13 +19,13 @@ const itemCount = computed(() => cart.totalItems || 0)
         mode="svg"
         style="color: white"
       />
-      <span class="cart__badge">{{ itemCount }}</span>
+      <span class="cart__badge">{{ cart.totalItems }}</span>
     </button>
 
     <CartDrawer
-      v-if="isOpen"
-      :is-open="isOpen"
-      @close="toggleCart"
+      v-show="cart.isOpen"
+      :is-open="cart.isOpen"
+      @close="cart.closeCart"
     />
   </div>
 </template>
