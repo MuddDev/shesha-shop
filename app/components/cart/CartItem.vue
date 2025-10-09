@@ -56,7 +56,13 @@ const emit = defineEmits(['remove', 'updateQuantity'])
       @click="emit('remove', item.id)"
       aria-label="Видалити товар"
     >
-      <span class="material-icons">close</span>
+      <Icon
+        class="cart__icon"
+        name="mdi:delete-empty"
+        size="1rem"
+        mode="svg"
+        style="color: black"
+      />
     </button>
   </div>
 </template>
