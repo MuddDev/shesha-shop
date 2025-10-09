@@ -10,7 +10,9 @@ export default defineNuxtConfig({
     public: {
       shopifyToken: process.env.NUXT_PUBLIC_SHOPIFY_TOKEN,
       shopifyDomain: process.env.NUXT_PUBLIC_SHOPIFY_DOMAIN,
-      shopifyApiVersion: process.env.NUXT_PUBLIC_SHOPIFY_API_VERSION || '2025-04'
+      shopifyApiVersion: process.env.NUXT_PUBLIC_SHOPIFY_API_VERSION || '2025-04',
+      supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
+      supabaseKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY
     }
   },
 

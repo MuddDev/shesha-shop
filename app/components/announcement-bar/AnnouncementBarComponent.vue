@@ -1,5 +1,7 @@
 <script setup>
-import announcement from '@/components/announcement-bar/announcement.json'
+const content = useContentStore()
+await content.fetch('announcement_bar', { eq: { active: true } })
+const announcement = content.getOne('announcement_bar')
 </script>
 
 <template>
@@ -17,11 +19,11 @@ import announcement from '@/components/announcement-bar/announcement.json'
       </h2>
 
       <NuxtLink
-        v-if="announcement.button"
+        v-if="announcement"
         class="announcement__link"
-        :to="announcement.button.link"
+        :to="announcement.cta_link"
       >
-        {{ announcement.button.text }}
+        {{ announcement.cta_text }}
       </NuxtLink>
     </div>
   </section>
