@@ -1,9 +1,11 @@
 @use "../abstracts/mixins" as *;
+
 .featured-tab {
   padding: 1rem 0;
 }
-.featured-tabs {
+.featured-slider {
   background: #fff;
+  position: relative;
 
   &__header {
     display: flex;
@@ -17,116 +19,121 @@
       color: #111;
     }
 
-    .tabs {
+    &__tabs {
       display: flex;
       gap: 0.75rem;
       flex-wrap: wrap;
-
-      .tab {
-        padding: 0.5rem 1.2rem;
-        border-radius: 20px;
-        border: 1px solid #ddd;
-        background: #f8f8f8;
-        cursor: pointer;
-        font-size: 0.95rem;
-        transition: all 0.25s ease;
-        white-space: nowrap;
-
-        &.active {
-          background: var(--clr-accent);
-          color: #fff;
-          border-color: var(--clr-accent);
-        }
-
-        &:hover {
-          background: var(--clr-success);
-          color: var(--clr-muted);
-        }
-      }
-    }
-  }
-
-  &__slider {
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    .slider {
-      flex: 1;
-      overflow: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding-bottom: 0.4rem;
-
-      &--scrollable {
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-
-        &::-webkit-scrollbar {
-          display: none;
-        }
-      }
-
-      &__track {
-        display: grid;
-        gap: 1.5rem;
-
-        &--grid {
-          grid-template-columns: repeat(5, 1fr);
-        }
-      }
-
-      @media (max-width: 768px) {
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-
-        &__track {
-          display: flex;
-          gap: 1rem;
-          padding-inline: 0.5rem;
-        }
-
-        .slider__item {
-          flex: 0 0 70%; /* 2.5 картки */
-          scroll-snap-align: start;
-        }
-      }
     }
 
-    .nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.9);
+    .featured-slider__tab {
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
       border: 1px solid #ddd;
-      border-radius: 50%;
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #f8f8f8;
       cursor: pointer;
+      font-size: 0.95rem;
       transition: all 0.25s ease;
-      z-index: 3;
+      white-space: nowrap;
+      @include respond(mobile) {
+        font-size: 0.7rem;
+      }
 
-      &:hover {
+      &.active {
         background: var(--clr-accent);
         color: #fff;
         border-color: var(--clr-accent);
       }
 
-      &.prev {
-        left: -0.75rem;
+      &:hover {
+        background: var(--clr-success);
+        color: #fff;
       }
+    }
+  }
 
-      &.next {
-        right: -0.75rem;
-      }
+  &__body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+  }
 
-      @media (max-width: 1024px) {
-        display: none;
-      }
+  &__wrapper {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    gap: 1.5rem;
+    padding-inline: 0.5rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__item {
+    flex: 0 0 calc(20% - 1.2rem);
+    scroll-snap-align: start;
+  }
+
+  @media (max-width: 1024px) {
+    &__item {
+      flex: 0 0 calc(33.33% - 1rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__item {
+      flex: 0 0 70%;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    &.is-disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    &:hover {
+      background: var(--clr-accent);
+      color: #fff;
+      border-color: var(--clr-accent);
+    }
+
+    &--prev {
+      left: -0.5rem;
+    }
+
+    &--next {
+      right: -0.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      display: none;
     }
   }
 
@@ -134,5 +141,13 @@
     text-align: center;
     padding: 2rem;
     color: #777;
+  }
+}
+
+.featured-slider__tabs {
+  display: flex;
+  gap: 1rem;
+  @include respond(mobile) {
+    gap: 0.3rem;
   }
 }
