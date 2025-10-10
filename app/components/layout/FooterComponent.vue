@@ -1,4 +1,6 @@
 <script setup>
+import LogoComponent from '~/components/ui/LogoComponent.vue'
+
 const content = useContentStore()
 
 await content.fetch('footer_content', { eq: { active: true }, limit: 1 })
@@ -13,19 +15,7 @@ const footer = content.getOne('footer_content')
     <div class="container--full">
       <div class="footer__inner">
         <div class="footer__col footer__col--logo">
-          <NuxtLink
-            to="/"
-            class="footer__logo"
-          >
-            <img
-              v-if="footer.logo_image"
-              :src="footer.logo_image"
-              :alt="footer.logo_alt"
-              class="footer__logo-img"
-            />
-            <span v-else>{{ footer.site_name }}</span>
-          </NuxtLink>
-
+          <LogoComponent />
           <p
             v-if="footer.tagline"
             class="footer__tagline"
