@@ -1,0 +1,55 @@
+{
+  "left": {
+    "image": "/images/promo/postilna-bilyzna.webp",
+    "alt": "Постільна білизна",
+    "title": "Затишок, який починається з сну",
+    "text": "Відкрий колекцію постільної білизни з натуральних тканин — м’якість, комфорт і стиль у кожній деталі.",
+    "link": "/collections/postilna-bilyzna",
+    "cta": "Переглянути колекцію",
+    "badge": "Нова лінійка"
+  },
+  "centerLarge": {
+    "image": "/images/promo/pokryvala.webp",
+    "title": "Покривала, що створюють атмосферу",
+    "link": "/collections/pokryvala",
+    "cta": "Додати затишку",
+    "tag": "Натхнення сезону",
+    "badge": "до -25%"
+  },
+  "centerSmall": [
+    {
+      "image": "/images/promo/skatertyny.webp",
+      "title": "Скатертини для кожного настрою",
+      "link": "/collections/skatertyny",
+      "cta": "Оновити стіл"
+    },
+    {
+      "image": "/images/promo/servetky.webp",
+      "title": "Серветки, що додають шарму",
+      "link": "/collections/servetky",
+      "cta": "Дивитись колекцію"
+    }
+  ],
+  "rightSmall": [
+    {
+      "image": "/images/promo/rushnik-khalat.webp",
+      "title": "Рушники та халати для релаксу",
+      "link": "/collections/rushnyk-khalat",
+      "cta": "Відчути комфорт"
+    },
+    {
+      "image": "/images/promo/rushniki-dlya-golovaruki.webp",
+      "title": "Рушники для рук і голови",
+      "link": "/collections/rushniki-dlya-golovaruki",
+      "cta": "Оновити ванну"
+    }
+  ],
+  "rightLarge": {
+    "image": "/images/promo/rushniki-dlya-nig.webp",
+    "title": "М’якість у кожному кроці",
+    "link": "/collections/rushniki-dlya-nig",
+    "cta": "Дивитись колекцію",
+    "tag": "Новинка",
+    "badge": "до -15%"
+  }
+}
