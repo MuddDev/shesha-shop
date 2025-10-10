@@ -4,6 +4,7 @@ import PromoGrid from '~/components/promo/promo-grid/PromoGrid.vue'
 import CollectionSpotlight from '~/components/collection/collection-spotlight/CollectionSpotlight.vue'
 import CountDownTimer from '~/components/countdown-timer/CountDownTimer.vue'
 import FeaturedTabsSlider from '~/components/collection/fearured-tabs-slider/FeaturedTabsSlider.vue'
+import PromoShowcase from '~/components/promo/promo-showcase/PromoShowcase.vue'
 </script>
 <template>
   <section class="featured-collections">
@@ -48,6 +49,15 @@ import FeaturedTabsSlider from '~/components/collection/fearured-tabs-slider/Fea
         { label: 'Рушник банний', handle: 'rushniki-banni' },
         { label: 'Знижка -25%', handle: 'rushniki-sale-25' }
       ]"
+    />
+  </section>
+  <section class="promo-showcase__box">
+    <PromoShowcase />
+  </section>
+  <section class="collection-spotlights">
+    <CollectionSpotlight
+      handle="rushniki-banni"
+      title="Топ колекція"
     />
   </section>
 </template>
