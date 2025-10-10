@@ -17,7 +17,7 @@ const collection = await useCollectionProducts(props.handle)
 </script>
 
 <template>
-  <section
+  <div
     class="collection-spotlight"
     v-if="collection"
   >
@@ -52,5 +52,5 @@ const collection = await useCollectionProducts(props.handle)
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>

@@ -251,6 +251,11 @@
   }
 
   @media (max-width: 640px) {
+    &__left--title-promo,
+    &__center--title-promo,
+    &__right--title-promo {
+      font-size: 0.7rem;
+    }
     &__left li,
     &__right li,
     &__center li {
@@ -259,7 +264,14 @@
     }
 
     h2 {
+      padding-top: 0.6rem;
       font-size: 1rem;
+      max-height: 4.2em;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
     }
 
     &__left--btn,
@@ -277,6 +289,9 @@
     &__center--code {
       padding: 0.8rem;
       bottom: 5.5rem;
+    }
+    p {
+      font-size: 0.7rem;
     }
   }
 }

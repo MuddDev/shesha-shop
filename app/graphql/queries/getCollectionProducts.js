@@ -30,7 +30,7 @@ export const GET_COLLECTION_PRODUCTS = `
               }
             }
 
-            # 🎨 Варіанти для свотчів (колір, ціна, картинка)
+            # 🎨 Варіанти для свотчів (колір, ціна, знижка, картинка)
             variants(first: 10) {
               edges {
                 node {
@@ -39,10 +39,19 @@ export const GET_COLLECTION_PRODUCTS = `
                   image {
                     url
                   }
+
+                  # 💰 Актуальна ціна
                   price {
                     amount
                     currencyCode
                   }
+
+                  # 💸 Стара ціна (до знижки)
+                  compareAtPrice {
+                    amount
+                    currencyCode
+                  }
+
                   selectedOptions {
                     name
                     value
@@ -54,6 +63,10 @@ export const GET_COLLECTION_PRODUCTS = `
             # 💰 Базова ціна (fallback)
             priceRange {
               minVariantPrice {
+                amount
+                currencyCode
+              }
+              maxVariantPrice {
                 amount
                 currencyCode
               }

@@ -19,6 +19,10 @@
 @use "announcement-bar/announcement-bar" as *;
 @use "collections/featured-collections" as *;
 @use "collections/collection-spotlight" as *;
+@use "collections/featured-tabs-slider" as *;
 @use "promo/promo-grid" as *;
 @use "product/product-card" as *;
+@use "product/product-card-mini" as *;
+@use "countdown-timer/countdown-timer" as *;
+
 @use "footer/footer" as *;

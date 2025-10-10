@@ -1,3 +1,4 @@
+@use "../abstracts/mixins" as *;
 .footer {
   background: var(--clr-bg-header);
   color: #fff;
@@ -62,9 +63,10 @@
   }
 
   &__tagline {
-    margin-top: 0.4rem;
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
+    @include respond(mobile) {
+    }
   }
 
   &__bottom {
