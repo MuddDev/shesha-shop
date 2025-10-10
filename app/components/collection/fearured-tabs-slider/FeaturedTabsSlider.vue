@@ -1,27 +1,24 @@
 <script setup>
-import { ref, computed, watchEffect, nextTick } from 'vue'
+import { ref, watchEffect, nextTick, onMounted } from 'vue'
 import ProductCardMini from '@/components/collection/ProductCardMini.vue'
 import { useCollectionProducts } from '@/composables/useCollectionProducts'
 
 const props = defineProps({
   title: { type: String, default: 'Featured Collection' },
-  tabs: {
-    type: Array,
-    required: true,
-    default: () => []
-  }
+  tabs: { type: Array, required: true, default: () => [] }
 })
 
 const activeTab = ref(props.tabs[0])
 const products = ref(null)
-const sliderRef = ref(null)
+const trackRef = ref(null)
+const isAtStart = ref(true)
+const isAtEnd = ref(false)
 
 const loadCollection = async handle => {
   const collection = await useCollectionProducts(handle)
   products.value = collection
   await nextTick()
 }
-
 await loadCollection(activeTab.value.handle)
 
 const changeTab = async tab => {
@@ -33,33 +30,52 @@ watchEffect(async () => {
   if (activeTab.value) await loadCollection(activeTab.value.handle)
 })
 
-const productCount = computed(() => products.value?.products?.edges?.length || 0)
-const hasSlider = computed(() => productCount.value > 5)
-
 const scrollNext = () => {
-  const el = sliderRef.value
-  if (el) el.scrollBy({ left: el.clientWidth * 0.8, behavior: 'smooth' })
+  const track = trackRef.value
+  if (!track) return
+  const card = track.querySelector('.featured-slider__item')
+  const cardWidth = card?.offsetWidth || 300
+  track.scrollBy({ left: cardWidth * 2, behavior: 'smooth' })
 }
+
 const scrollPrev = () => {
-  const el = sliderRef.value
-  if (el) el.scrollBy({ left: -el.clientWidth * 0.8, behavior: 'smooth' })
+  const track = trackRef.value
+  if (!track) return
+  const card = track.querySelector('.featured-slider__item')
+  const cardWidth = card?.offsetWidth || 300
+  track.scrollBy({ left: -cardWidth * 2, behavior: 'smooth' })
 }
+
+const updateScrollState = () => {
+  const track = trackRef.value
+  if (!track) return
+  const scrollLeft = track.scrollLeft
+  const maxScrollLeft = track.scrollWidth - track.clientWidth
+
+  isAtStart.value = scrollLeft <= 0
+  isAtEnd.value = scrollLeft >= maxScrollLeft - 1
+}
+
+onMounted(() => {
+  const track = trackRef.value
+  if (track) track.addEventListener('scroll', updateScrollState)
+})
 </script>
 
 <template>
-  <section class="featured-tabs">
+  <section class="featured-slider">
     <div class="container--full">
-      <div class="featured-tabs__header">
+      <div class="featured-slider__header">
         <h2>{{ title }}</h2>
 
         <div
           v-if="tabs?.length"
-          class="tabs"
+          class="featured-slider__tabs"
         >
           <button
             v-for="tab in tabs"
             :key="tab.handle"
-            :class="['tab', { active: activeTab.handle === tab.handle }]"
+            :class="['featured-slider__tab', { active: activeTab.handle === tab.handle }]"
             @click="changeTab(tab)"
           >
             {{ tab.label }}
@@ -68,55 +84,52 @@ const scrollPrev = () => {
       </div>
 
       <div
-        class="featured-tabs__slider"
-        v-if="products?.value"
+        v-if="products"
+        class="featured-slider__body"
       >
         <button
-          v-if="hasSlider"
-          class="nav prev"
+          class="featured-slider__button featured-slider__button--prev"
+          :class="{ 'is-disabled': isAtStart }"
           @click="scrollPrev"
+          :disabled="isAtStart"
           aria-label="Scroll left"
         >
           <Icon
             name="mdi:chevron-left"
-            size="1.8rem"
+            size="1.6rem"
           />
         </button>
 
-        <div
-          class="slider"
-          ref="sliderRef"
-          :class="{ 'slider--scrollable': hasSlider }"
-        >
+        <div class="featured-slider__wrapper">
           <div
-            class="slider__track"
-            :class="{ 'slider__track--grid': !hasSlider }"
+            class="featured-slider__track"
+            ref="trackRef"
           >
             <ProductCardMini
               v-for="edge in products.value.products?.edges"
               :key="edge.node.id"
               :product="edge.node"
-              class="slider__item"
+              class="featured-slider__item"
             />
           </div>
         </div>
 
         <button
-          v-if="hasSlider"
-          class="nav next"
+          class="featured-slider__button featured-slider__button--next"
+          :class="{ 'is-disabled': isAtEnd }"
           @click="scrollNext"
           aria-label="Scroll right"
+          :disabled="isAtEnd"
         >
           <Icon
             name="mdi:chevron-right"
-            size="1.8rem"
+            size="1.6rem"
           />
         </button>
       </div>
-
       <div
         v-else
-        class="featured-tabs__loading"
+        class="featured-slider__loading"
       >
         Loading...
       </div>
