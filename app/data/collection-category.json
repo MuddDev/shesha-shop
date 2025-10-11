@@ -1,0 +1,26 @@
+{
+  "title": "Відчуй комфорт у кожній деталі",
+  "items": [
+    {
+      "title": "Банні рушники",
+      "text": "Пухнасті, вологопоглинаючі та створені для щоденного релаксу.",
+      "cta": "Переглянути колекцію",
+      "link": "/collections/banni-rushnyky",
+      "image": "/images/categories/banni-rushnyky.webp"
+    },
+    {
+      "title": "Кухонні рушники",
+      "text": "Практичність і естетика — для затишку на кожній кухні.",
+      "cta": "Купити зараз",
+      "link": "/collections/kuhonnI-rushnyky",
+      "image": "/images/categories/kuhonnI-rushnyky.webp"
+    },
+    {
+      "title": "Халати",
+      "text": "М’якість і тепло, у які приємно загортатися після ванни.",
+      "cta": "Дивитись моделі",
+      "link": "/collections/halaty",
+      "image": "/images/categories/halaty.webp"
+    }
+  ]
+}
