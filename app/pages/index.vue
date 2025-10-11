@@ -6,6 +6,7 @@ import CountDownTimer from '~/components/countdown-timer/CountDownTimer.vue'
 import FeaturedTabsSlider from '~/components/collection/fearured-tabs-slider/FeaturedTabsSlider.vue'
 import PromoShowcase from '~/components/promo/promo-showcase/PromoShowcase.vue'
 import CollectionCategory from '~/components/collection/collection-category/CollectionCategory.vue'
+import StoreBenefits from '~/components/benefits/StoreBenefits.vue'
 </script>
 <template>
   <section class="featured-collections">
@@ -67,7 +68,13 @@ import CollectionCategory from '~/components/collection/collection-category/Coll
   <section class="featured-tab">
     <FeaturedTabsSlider
       title="Топ колекція для ванної"
-      :tabs="[{ label: 'Рушник банний', handle: 'rushniki-banni' }]"
+      :tabs="[
+        { label: 'Рушник банний', handle: 'rushniki-banni' },
+        { label: 'Знижка -25%', handle: 'rushniki-sale-25' }
+      ]"
     />
+  </section>
+  <section class="benefits-box">
+    <StoreBenefits />
   </section>
 </template>
