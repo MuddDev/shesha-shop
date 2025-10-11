@@ -5,6 +5,7 @@ import CollectionSpotlight from '~/components/collection/collection-spotlight/Co
 import CountDownTimer from '~/components/countdown-timer/CountDownTimer.vue'
 import FeaturedTabsSlider from '~/components/collection/fearured-tabs-slider/FeaturedTabsSlider.vue'
 import PromoShowcase from '~/components/promo/promo-showcase/PromoShowcase.vue'
+import CollectionCategory from '~/components/collection/collection-category/CollectionCategory.vue'
 </script>
 <template>
   <section class="featured-collections">
@@ -58,6 +59,15 @@ import PromoShowcase from '~/components/promo/promo-showcase/PromoShowcase.vue'
     <CollectionSpotlight
       handle="rushniki-banni"
       title="Топ колекція"
+    />
+  </section>
+  <section class="collection-category__wrapper">
+    <CollectionCategory />
+  </section>
+  <section class="featured-tab">
+    <FeaturedTabsSlider
+      title="Топ колекція для ванної"
+      :tabs="[{ label: 'Рушник банний', handle: 'rushniki-banni' }]"
     />
   </section>
 </template>
