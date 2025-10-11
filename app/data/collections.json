@@ -1,0 +1,34 @@
+{
+  "title": "Обирайте свою колекцію",
+  "subtitle": "Дизайни, що надихають. Матеріали, які приємні на дотик.",
+  "seo": {
+    "title": "Колекції текстилю для дому — рушники, халати, постіль | SheshaShop",
+    "description": "Перегляньте колекції текстилю SheshaShop — рушники, халати, постільна білизна та скатертини. Висока якість, приємні тканини та стильний дизайн для вашого дому."
+  },
+  "collections": [
+    {
+      "title": "Постільна білизна",
+      "handle": "postilna-bilyzna",
+      "image": "/images/collections/postilna-bilyzna.webp",
+      "text": "Комфорт і стиль для кожної спальні."
+    },
+    {
+      "title": "Рушники",
+      "handle": "rushnyky",
+      "image": "/images/collections/rushnyky.webp",
+      "text": "М’якість і турбота щодня."
+    },
+    {
+      "title": "Халати",
+      "handle": "halaty",
+      "image": "/images/collections/halaty.webp",
+      "text": "Стильна домашня класика."
+    },
+    {
+      "title": "Скатертини",
+      "handle": "skatertyny",
+      "image": "/images/collections/skatertyny.webp",
+      "text": "Деталі, що створюють атмосферу."
+    }
+  ]
+}

@@ -24,8 +24,11 @@
 @use "promo/promo-grid" as *;
 @use "promo/promo-showcase" as *;
 @use "product/product-card" as *;
+@use "product/collection-product-card" as *;
 @use "product/product-card-mini" as *;
 @use "countdown-timer/countdown-timer" as *;
 @use "benefits/benefits" as *;
+@use "pages/collections/handle-collection" as *;
+@use "pages/collections/collection-all" as *;
 
 @use "footer/footer" as *;

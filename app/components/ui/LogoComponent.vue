@@ -25,7 +25,7 @@ const hasImage = logo.image && logo.image.trim().length > 0
       </template>
 
       <template v-else>
-        <h1 class="logo-text">{{ site.name }}</h1>
+        <h2 class="logo-text">{{ site.name }}</h2>
         <span class="logo-tagline">{{ site.tagline }}</span>
       </template>
     </div>
