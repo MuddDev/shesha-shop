@@ -1,0 +1,179 @@
+.product-info {
+  flex: 1;
+  color: #222;
+
+  .product-title {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+    color: #666;
+    margin-bottom: 0.4rem;
+
+    /* === STOCK BADGE === */
+    .stock {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      transition: all 0.25s ease;
+      user-select: none;
+
+      .dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        transition: background 0.3s ease;
+      }
+
+      &.in-stock {
+        background: rgba(39, 174, 96, 0.1);
+        color: #27ae60;
+        border: 1px solid rgba(39, 174, 96, 0.25);
+
+        .dot {
+          background: #27ae60;
+        }
+      }
+
+      &.out-of-stock {
+        background: rgba(230, 57, 70, 0.1);
+        color: #e63946;
+        border: 1px solid rgba(230, 57, 70, 0.25);
+
+        .dot {
+          background: #e63946;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.03);
+      }
+    }
+  }
+
+  /* === PRICE === */
+  .product-price {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+
+    .current {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .compare {
+      text-decoration: line-through;
+      color: #aaa;
+    }
+
+    .discount {
+      background: #e63946;
+      color: #fff;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+    }
+  }
+
+  /* === ACTIONS === */
+  .product-actions {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+
+    .add-to-cart {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 0.9rem 1.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #222;
+      }
+    }
+
+    /* === QTY CONTROL === */
+    .qty-control {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      overflow: hidden;
+      height: 42px;
+      background: #fff;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+      &:focus-within {
+        border-color: #000;
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+      }
+
+      .qty-btn {
+        width: 38px;
+        height: 42px;
+        background: #f8f8f8;
+        border: none;
+        cursor: pointer;
+        font-size: 1.8rem;
+        line-height: 1;
+        color: #333;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        user-select: none;
+
+        &:hover {
+          background: #eee;
+          color: #000;
+        }
+      }
+
+      .qty-input {
+        width: 60px;
+        text-align: center;
+        border: none;
+        outline: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #222;
+        background: transparent;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  /* === SHORT DESCRIPTION === */
+  .product-short {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: #444;
+    line-height: 1.6;
+  }
+}

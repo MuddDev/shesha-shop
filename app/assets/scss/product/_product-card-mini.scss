@@ -1,4 +1,5 @@
 @use "../abstracts/mixins" as *;
+
 .product-mini {
   background: #fff;
   border-radius: 0.75rem;
@@ -10,6 +11,7 @@
   position: relative;
   cursor: pointer;
   margin-bottom: 0.1rem;
+
   &:hover {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   }
@@ -48,19 +50,7 @@
       opacity: 1;
     }
 
-    .discount-label {
-      position: absolute;
-      top: 0.75rem;
-      left: 1.8rem;
-      background: #e53935;
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      z-index: 2;
-    }
-
+    .discount-label,
     .badge {
       position: absolute;
       top: 0.75rem;
@@ -117,6 +107,63 @@
       text-transform: capitalize;
       margin: 0;
     }
+
+    /* === Додано: опції кольорів та розмірів === */
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+
+      &.colors {
+        button {
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          border: 1px solid #ddd;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          background-color: #eee;
+
+          &:hover {
+            transform: scale(1.1);
+            border-color: #bbb;
+          }
+
+          &.active {
+            border-color: #000;
+            outline: 2px solid #000;
+            transform: scale(1.15);
+          }
+        }
+      }
+
+      &.sizes {
+        button {
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 0.2rem 0.6rem;
+          font-size: 0.8rem;
+          font-weight: 500;
+          cursor: pointer;
+          background: #fff;
+          color: #333;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: #f6f6f6;
+          }
+
+          &.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+          }
+        }
+      }
+    }
+
+    /* === Кінець нового блоку === */
 
     .bottom {
       display: flex;
