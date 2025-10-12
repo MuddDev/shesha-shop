@@ -9,17 +9,19 @@ const props = defineProps({
 const cart = useCartStore()
 
 const images = computed(() => props.product.images?.edges?.map(i => i.node.url) || [])
-const currentImage = computed(() => images.value[0] || props.product.featuredImage?.url)
+const currentImage = ref(images.value[0] || props.product.featuredImage?.url)
 const hoverImage = computed(() => images.value[1] || currentImage.value)
 
-const variant = computed(() => props.product.variants?.edges?.[0]?.node)
+const variants = computed(() => props.product.variants?.edges?.map(v => v.node) || [])
+const defaultVariant = variants.value[0]
+
 const price = computed(
-  () => variant.value?.price?.amount || props.product.priceRange?.minVariantPrice?.amount || '—'
+  () => defaultVariant?.price?.amount || props.product.priceRange?.minVariantPrice?.amount || '—'
 )
-const compareAt = computed(() => variant.value?.compareAtPrice?.amount || null)
+const compareAt = computed(() => defaultVariant?.compareAtPrice?.amount || null)
 const currency = computed(
   () =>
-    variant.value?.price?.currencyCode ||
+    defaultVariant?.price?.currencyCode ||
     props.product.priceRange?.minVariantPrice?.currencyCode ||
     ''
 )
@@ -31,21 +33,49 @@ const discountPercent = computed(() => {
   return Math.round(diff)
 })
 
-const colorName = computed(() => {
-  const variantNode = props.product.variants?.edges?.[0]?.node
-  const colorOpt = variantNode?.selectedOptions?.find(o => ['Color', 'Колір'].includes(o.name))
-  return colorOpt?.value || ''
+const colors = computed(
+  () =>
+    variants.value
+      .map(v => v.selectedOptions.find(o => ['Color', 'Колір'].includes(o.name))?.value)
+      .filter(Boolean)
+      .filter((v, i, arr) => arr.indexOf(v) === i) // унікальні
+)
+
+const sizes = computed(() =>
+  variants.value
+    .map(v => v.selectedOptions.find(o => ['Size', 'Розмір'].includes(o.name))?.value)
+    .filter(Boolean)
+    .filter((v, i, arr) => arr.indexOf(v) === i)
+)
+
+const selectedColor = ref(colors.value[0] || null)
+const selectedSize = ref(sizes.value[0] || null)
+
+const activeVariant = computed(() => {
+  return (
+    variants.value.find(v => {
+      const color = v.selectedOptions.find(o => ['Color', 'Колір'].includes(o.name))?.value
+      const size = v.selectedOptions.find(o => ['Size', 'Розмір'].includes(o.name))?.value
+      return color === selectedColor.value && size === selectedSize.value
+    }) || defaultVariant
+  )
+})
+
+watch(selectedColor, () => {
+  const image = activeVariant.value?.image?.url
+  if (image) currentImage.value = image
 })
 
 const addToCart = () => {
   cart.addItem({
-    id: props.product.id,
+    id: activeVariant.value.id,
     title: props.product.title,
-    price: Number(price.value),
+    price: Number(activeVariant.value.price?.amount) || 0,
     image: currentImage.value,
     quantity: 1,
     handle: props.product.handle,
-    vendor: props.product.vendor
+    vendor: props.product.vendor,
+    variantOptions: activeVariant.value.selectedOptions || []
   })
 }
 </script>
@@ -70,18 +100,11 @@ const addToCart = () => {
           class="back"
           loading="lazy"
         />
-
         <div
           v-if="discountPercent"
           class="discount-label"
         >
           -{{ discountPercent }}%
-        </div>
-        <div
-          v-else-if="product.tags?.includes('sale')"
-          class="badge"
-        >
-          Sale
         </div>
       </div>
 
@@ -89,22 +112,33 @@ const addToCart = () => {
         <p class="vendor">{{ product.vendor }}</p>
         <h3 class="title">{{ product.title }}</h3>
 
-        <div class="rating">
-          <Icon
-            v-for="n in 5"
-            :key="n"
-            name="mdi:star"
-            size="0.9rem"
-            :class="['star', { active: n <= 4 }]"
-          />
+        <div
+          v-if="colors.length"
+          class="options colors"
+        >
+          <button
+            v-for="(color, i) in colors"
+            :key="i"
+            :class="{ active: color === selectedColor }"
+            @click.prevent.stop="selectedColor = color"
+            :style="{ backgroundColor: color.toLowerCase() }"
+            :title="color"
+          ></button>
         </div>
 
-        <p
-          v-if="colorName"
-          class="color"
+        <div
+          v-if="sizes.length"
+          class="options sizes"
         >
-          {{ colorName }}
-        </p>
+          <button
+            v-for="(size, i) in sizes"
+            :key="i"
+            :class="{ active: size === selectedSize }"
+            @click.prevent.stop="selectedSize = size"
+          >
+            {{ size }}
+          </button>
+        </div>
 
         <div class="bottom">
           <div class="price-box">

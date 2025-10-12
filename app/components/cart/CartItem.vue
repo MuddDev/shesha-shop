@@ -23,12 +23,20 @@ const emit = defineEmits(['remove', 'updateQuantity'])
 
     <div class="cart-item__details">
       <h4 class="cart-item__title">{{ item.title }}</h4>
-      <p
-        class="cart-item__variant"
-        v-if="item.variant"
+
+      <ul
+        v-if="item.variantOptions?.length"
+        class="cart-item__variant-list"
       >
-        {{ item.variant }}
-      </p>
+        <li
+          v-for="(opt, i) in item.variantOptions"
+          :key="i"
+          class="cart-item__variant"
+        >
+          <span class="opt-name">{{ opt.name }}:</span>
+          <span class="opt-value">{{ opt.value }}</span>
+        </li>
+      </ul>
 
       <div class="cart-item__price-qty">
         <div class="cart-item__qty">
