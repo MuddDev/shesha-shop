@@ -1,11 +1,18 @@
 <script setup>
 import { computed } from 'vue'
+import VariantMeta from "~/components/product/VariantMeta.vue";
 
 const props = defineProps({
   product: { type: Object, required: true },
   variant: { type: Object, required: false }
 })
 const emit = defineEmits(['update:variant'])
+
+const selectedVariant = computed({
+  get: () => props.variant || null,
+  set: val => emit('update:variant', val)
+})
+
 
 // === Отримуємо список усіх опцій (наприклад Color, Size)
 const optionNames = computed(() => {
@@ -47,7 +54,7 @@ const selectOption = (optionName, optionValue) => {
 
 <template>
   <div class="variant-details">
-    <h3 class="variant-details__title">🔘 Вибір варіантів</h3>
+    <h3 class="variant-details__title">Вибір варіантів:</h3>
 
     <div
       v-for="optionName in optionNames"
@@ -73,6 +80,12 @@ const selectOption = (optionName, optionValue) => {
           {{ value }}
         </button>
       </div>
+
+
     </div>
+    <VariantMeta
+        v-if="selectedVariant"
+        :variant="selectedVariant"
+    />
   </div>
 </template>

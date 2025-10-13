@@ -29,10 +29,8 @@ export const GET_PRODUCT_BY_HANDLE = `
           selectedOptions { name value }
 
           metafields(identifiers: [
-            {namespace: "bedding", key: "set_name"},
-            {namespace: "bedding", key: "duvet"},
-            {namespace: "bedding", key: "sheet"},
-            {namespace: "bedding", key: "pillowcase"}
+            { namespace: "custom", key: "set_name" },
+            { namespace: "custom", key: "composition" }
           ]) {
             namespace
             key
