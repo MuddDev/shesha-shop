@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import VariantMeta from "~/components/product/VariantMeta.vue";
+import VariantMeta from '~/components/product/VariantMeta.vue'
 
 const props = defineProps({
   product: { type: Object, required: true },
@@ -13,8 +13,6 @@ const selectedVariant = computed({
   set: val => emit('update:variant', val)
 })
 
-
-// === Отримуємо список усіх опцій (наприклад Color, Size)
 const optionNames = computed(() => {
   const variants = props.product?.variants?.nodes || []
   const names = new Set()
@@ -26,7 +24,6 @@ const optionNames = computed(() => {
   return Array.from(names)
 })
 
-// === Для кожної опції робимо список унікальних значень
 const optionsMap = computed(() => {
   const variants = props.product?.variants?.nodes || []
   const map = {}
@@ -36,15 +33,12 @@ const optionsMap = computed(() => {
       map[opt.name].add(opt.value)
     })
   })
-  // перетворюємо Set → Array
   for (const key in map) map[key] = Array.from(map[key])
   return map
 })
 
-// === Хендлер зміни
 const selectOption = (optionName, optionValue) => {
   const variants = props.product?.variants?.nodes || []
-  // знайти варіант, який має цю комбінацію
   const found = variants.find(v =>
     v.selectedOptions.some(o => o.name === optionName && o.value === optionValue)
   )
@@ -80,12 +74,10 @@ const selectOption = (optionName, optionValue) => {
           {{ value }}
         </button>
       </div>
-
-
     </div>
     <VariantMeta
-        v-if="selectedVariant"
-        :variant="selectedVariant"
+      v-if="selectedVariant"
+      :variant="selectedVariant"
     />
   </div>
 </template>

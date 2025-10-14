@@ -1,8 +1,11 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { useShopPages } from '@/composables/useShopPages'
 import VariantDetails from '@/components/product/VariantDetails.vue'
 import Accordion from '@/components/ui/Accordion.vue'
 import { useCartStore } from '@/stores/useCartStore'
+
+const pages = await useShopPages()
 
 const props = defineProps({
   product: { type: Object, required: true },
@@ -10,6 +13,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:variant'])
+
 const qty = ref(1)
 const showFullDesc = ref(false)
 const cart = useCartStore()
@@ -32,6 +36,20 @@ const getMeta = key => {
   const found = metafields.find(m => m?.key === key)
   return found?.value || ''
 }
+
+const getPageContent = handle => {
+  const page = pages.value?.find(p => p.handle === handle)
+  if (!page) {
+    return ''
+  }
+  return page.body || page.bodySummary || ''
+}
+
+const accordionItems = computed(() => [
+  { title: 'Інформація про товар', content: props.product.descriptionHtml || '' },
+  { title: 'Доставка та оплата', content: getPageContent('delivery') },
+  { title: 'Повернення', content: getPageContent('returns') }
+])
 
 const addToCart = () => {
   if (!selectedVariant.value) return
@@ -62,7 +80,6 @@ const addToCart = () => {
     </div>
 
     <h1 class="product-title">{{ product.title }}</h1>
-
     <div class="product-price">
       <span class="current">{{ selectedVariant.price.amount }} ₴</span>
       <span
@@ -77,7 +94,7 @@ const addToCart = () => {
         >-{{ discountPercent }}%</span
       >
     </div>
-
+    <ProductSpecs :product="product" />
     <div
       v-if="product.variants?.nodes?.some(v => v.selectedOptions?.some(o => o.name === 'Color'))"
       class="variant variant--color"
@@ -95,7 +112,6 @@ const addToCart = () => {
         </button>
       </div>
     </div>
-
     <div
       v-if="product.variants?.nodes?.some(v => v.selectedOptions?.some(o => o.name === 'Size'))"
       class="variant variant--size"
@@ -113,13 +129,11 @@ const addToCart = () => {
         </button>
       </div>
     </div>
-
     <VariantDetails
       :product="product"
       :variant="selectedVariant"
       @update:variant="selectedVariant = $event"
     />
-
     <div class="product-actions">
       <div class="qty-control">
         <button
@@ -151,7 +165,6 @@ const addToCart = () => {
         Додати в кошик
       </button>
     </div>
-
     <div
       v-if="getMeta('short_description')"
       class="product-short"
@@ -171,13 +184,16 @@ const addToCart = () => {
         {{ showFullDesc ? 'Згорнути' : 'Розгорнути' }}
       </button>
     </div>
-
     <Accordion
-      :items="[
-        { title: 'Інформація про товар', content: product.descriptionHtml || '' },
-        { title: 'Доставка та оплата', content: getMeta('shipping_info') },
-        { title: 'Повернення', content: getMeta('return_policy') }
-      ]"
+      v-if="accordionItems.some(i => i.content)"
+      :items="accordionItems"
     />
+
+    <p
+      v-else
+      class="loading-small"
+    >
+      Завантаження інформації...
+    </p>
   </div>
 </template>
