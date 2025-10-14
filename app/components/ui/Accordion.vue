@@ -8,7 +8,6 @@ const props = defineProps({
   }
 })
 
-// зберігаємо індекс відкритого акордеону
 const openIndex = ref(null)
 
 const toggle = index => {

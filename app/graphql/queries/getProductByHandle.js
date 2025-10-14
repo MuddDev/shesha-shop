@@ -38,6 +38,18 @@ export const GET_PRODUCT_BY_HANDLE = `
           }
         }
       }
+      
+       # === МЕТАФІЛД З ПОСИЛАННЯМ НА METAOBJECT Product Attributes ===
+      metafield(namespace: "custom", key: "attributes") {
+        reference {
+          ... on Metaobject {
+            fields {
+              key
+              value
+            }
+          }
+        }
+      }
 
       metafields(identifiers: [
         {namespace: "global", key: "short_description"},
