@@ -8,6 +8,7 @@ import FeaturedTabsSlider from '~/components/collection/fearured-tabs-slider/Fea
 import PromoShowcase from '~/components/promo/promo-showcase/PromoShowcase.vue'
 import CollectionCategory from '~/components/collection/collection-category/CollectionCategory.vue'
 import StoreBenefits from '~/components/benefits/StoreBenefits.vue'
+import promoSale from "@/data/promo-home.json"
 const url = useRequestURL()
 const baseUrl = url.origin || 'https://shesha-shop.pages.dev'
 

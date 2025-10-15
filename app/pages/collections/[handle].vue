@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCollectionProductsSmart } from '@/composables/useCollectionProductsSmart'
 import CollectionProductCard from '@/components/collection/CollectionProductCard.vue'
+import Breadcrumb from "~/components/ui/Breadcrumb.vue";
 
 /* =========================================================
  🧩 ТЕКСТИ — для легкого перекладу або кастомізації
@@ -129,6 +130,9 @@ const toggleFilter = (type, value) => {
     class="collection-page"
   >
     <div class="container--full">
+      <div class="breadcrumb">
+        <Breadcrumb :current="title" />
+      </div>
       <!-- 🏷 Header -->
       <header class="collection-header">
         <h1>{{ baseCollection.title }}</h1>
