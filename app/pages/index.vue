@@ -65,7 +65,7 @@ useHead({
       title="М’якість, як у SPA, за пів ціни. Встигни схопити свої рушники, поки годинник ще тікає"
       button-text="Перейти до розпродажу"
       button-link="/collections/rushniki-banni"
-      end-date="2025-10-31T23:59:59"
+      end-date="2025-12-31T23:59:59"
       background-image="/images/countdown-bg.webp"
     />
   </section>

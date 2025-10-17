@@ -1,46 +1,46 @@
 {
   "left": [
     {
-      "title": "Комфорт і м’якість — тепер зі знижкою до 50%!",
+      "title": "Свято і комфорту - до Різдва знижки до 25%!",
       "subtitle": "Розпродаж",
-      "discount": "-50%",
+      "discount": "-25%",
       "ctaText": "Купити",
       "ctaLink": "/collections/sale",
       "image": "/images/promo/promo-left-1.webp"
     },
     {
-      "title": "Онови ванну — стиль і комфорт у деталях.",
-      "subtitle": "Колекція 2025",
+      "title": "Даруємо тепло та святкові знижки",
+      "subtitle": "ТОП",
       "ctaText": "Переглянути",
       "ctaLink": "/collections/new",
       "image": "/images/promo/promo-left-2.webp"
     }
   ],
   "center": {
-    "title": "М’якість і вигода - до -50%!",
-    "subtitle": "Розпродаж",
+    "title": "Свято тепла та знижок до -50%!",
+    "subtitle": "Різдвяний розпродаж",
     "discount": "-50%",
-    "promoText": "Використовуйте промокод MEGA50, щоб отримати додаткову знижку 10% на ваше перше замовлення.",
-    "promoCode": "MEGA50",
-    "ctaText": "Купити",
-    "ctaLink": "/collections/sale",
-    "image": "/images/promo/promo-center.webp"
+    "promoText": "Додайте святковий настрій у свій дім! Використовуйте промокод XMAS10, щоб отримати ще 10% знижки на перше замовлення.",
+    "promoCode": "XMAS10",
+    "ctaText": "Переглянути колекцію",
+    "ctaLink": "/collections/christmas-sale",
+    "image": "/images/promo/promo-christmas-center.webp"
   },
   "right": [
     {
-      "title": "Додай стилю та затишку у ванну кімнату",
-      "subtitle": "ТОП Колекція",
+      "title": "Додай зимового затишку у ванну кімнату",
+      "subtitle": "Winter Cozy",
       "discount": "-30%",
-      "ctaText": "Переглянути",
-      "ctaLink": "/collections/accessories",
-      "image": "/images/promo/promo-right-1.webp"
+      "ctaText": "Переглянути колекцію",
+      "ctaLink": "/collections/winter-accessories",
+      "image": "/images/promo/promo-right-winter-1.webp"
     },
     {
-      "title": "Ніжність природи у кожному дотик",
+      "title": "Зимова гармонія природи у кожному дотику",
       "subtitle": "Eco Line",
-      "ctaText": "Розпродаж",
+      "ctaText": "Переглянути колекцію",
       "ctaLink": "/collections/eco",
-      "image": "/images/promo/promo-right-2.webp"
+      "image": "/images/promo/promo-right-eco-holiday.webp"
     }
   ]
 }
