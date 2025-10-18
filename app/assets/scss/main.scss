@@ -38,5 +38,10 @@
 @use "benefits/benefits" as *;
 @use "pages/collections/handle-collection" as *;
 @use "pages/collections/collection-all" as *;
+@use "pages/about/about-page" as *;
+@use "pages/about/about-hero" as *;
+@use "pages/about/about-values" as *;
+@use "pages/about/about-story" as *;
+@use "pages/about/about-cta" as *;
 
 @use "footer/footer" as *;

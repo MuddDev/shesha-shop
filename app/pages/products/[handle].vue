@@ -7,7 +7,7 @@ import ProductInfo from '@/components/product/ProductInfo.vue'
 import CollectionCategory from '~/components/collection/collection-category/CollectionCategory.vue'
 import FeaturedTabsSlider from '~/components/collection/fearured-tabs-slider/FeaturedTabsSlider.vue'
 import StoreBenefits from '~/components/benefits/StoreBenefits.vue'
-import Breadcrumb from "~/components/ui/Breadcrumb.vue";
+import Breadcrumb from '~/components/ui/Breadcrumb.vue'
 
 const route = useRoute()
 const handle = route.params.handle
@@ -22,13 +22,10 @@ const selectedVariant = ref(product.value?.variants?.nodes?.[0] || null)
     </div>
   </div>
   <section
-
     v-if="product"
     class="product-page"
   >
-
     <div class="product-container">
-
       <div class="product-gallery-wrap">
         <ProductGallery
           :images="product.images.nodes"

@@ -7,9 +7,8 @@ export default defineNuxtConfig({
     cssLayer: 'base'
   },
   ssr: true,
-  routeRules: {
-    '/**': { prerender: false }
-  },
+  pages: true,
+
   runtimeConfig: {
     public: {
       shopifyToken: process.env.NUXT_PUBLIC_SHOPIFY_TOKEN,

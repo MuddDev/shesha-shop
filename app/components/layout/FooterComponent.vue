@@ -26,7 +26,7 @@ const footer = content.getOne('footer_content')
 
         <div class="footer__col footer__col--links">
           <ul>
-            <li><NuxtLink to="/collections/all">Магазин</NuxtLink></li>
+            <li><NuxtLink to="/">Магазин</NuxtLink></li>
             <li><NuxtLink to="/about">Про нас</NuxtLink></li>
             <li><NuxtLink to="/contact">Контакти</NuxtLink></li>
           </ul>

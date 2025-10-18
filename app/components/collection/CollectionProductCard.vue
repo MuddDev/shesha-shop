@@ -38,14 +38,17 @@ const colorName = computed(() => {
 })
 
 const addToCart = () => {
+  if (!variant.value) return
+
   cart.addItem({
-    id: props.product.id,
+    id: variant.value.id,
     title: props.product.title,
     price: Number(price.value),
     image: currentImage.value,
     quantity: 1,
     handle: props.product.handle,
-    vendor: props.product.vendor
+    vendor: props.product.vendor,
+    variantOptions: variant.value.selectedOptions
   })
 }
 </script>
