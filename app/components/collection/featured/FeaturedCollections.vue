@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { useAsyncData } from '#app'
 import { useCollections } from '@/composables/useCollections'
 
 const props = defineProps({
@@ -9,17 +9,15 @@ const props = defineProps({
   }
 })
 
-const collections = ref([])
-
-onMounted(async () => {
-  collections.value = await useCollections(props.handles)
-})
+const { data: collections, pending } = await useAsyncData('featured-collections', () =>
+  useCollections(props.handles)
+)
 </script>
 
 <template>
   <div
+    v-if="!pending && collections?.length"
     class="featured-inner"
-    v-if="collections.length"
   >
     <div class="container--full">
       <div class="featured-inner__lists">
@@ -31,11 +29,13 @@ onMounted(async () => {
             <NuxtLink :to="`/collections/${collection.handle}`">
               <div class="image-wrapper">
                 <img
+                  width="100%"
+                  height="auto"
                   :src="collection.image?.url"
                   :alt="collection.title"
+                  loading="eager"
                 />
               </div>
-
               <p>{{ collection.title }}</p>
             </NuxtLink>
           </li>
@@ -46,10 +46,17 @@ onMounted(async () => {
       </div>
     </div>
   </div>
+
   <div
     v-else
-    class="featured-inner__loading container--full"
+    class="featured-inner__skeleton container--full"
   >
-    <p>Завантаження колекцій...</p>
+    <ul>
+      <li
+        v-for="n in 4"
+        :key="n"
+        class="skeleton-card"
+      ></li>
+    </ul>
   </div>
 </template>
