@@ -1,9 +1,7 @@
 <script setup>
 import collectionsData from '@/data/collections.json'
 import { useRequestURL } from '#app'
-import Breadcrumb from "~/components/ui/Breadcrumb.vue";
 
-/* === SEO META === */
 const url = useRequestURL()
 const baseUrl = url.origin || 'https://shesha-shop.pages.dev'
 const fullUrl = `${baseUrl}/collections`
@@ -34,9 +32,6 @@ useHead({
 <template>
   <section class="collections-list">
     <div class="container--full">
-      <div class="breadcrumb">
-        <Breadcrumb :title="collection.title" />
-      </div>
       <header class="collections-list__header">
         <h1>{{ collectionsData.title }}</h1>
         <p>{{ collectionsData.subtitle }}</p>

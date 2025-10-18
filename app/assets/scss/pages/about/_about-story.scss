@@ -1,0 +1,149 @@
+.about-story {
+  position: relative;
+  padding: clamp(4rem, 8vw, 9rem) 1.5rem;
+  background: linear-gradient(180deg, #fefefe 0%, #f8f8f8 100%);
+  overflow: hidden;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(2rem, 5vw, 8rem);
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: 900px) {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+  }
+
+  &__content {
+    flex: 1.1;
+    min-width: 320px;
+    animation: fadeInLeft 1.2s ease both;
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -0.6rem;
+        left: 0;
+        width: 70px;
+        height: 3px;
+        background: linear-gradient(90deg, #d4af37, #ffda6a);
+        border-radius: 3px;
+      }
+
+      @media (max-width: 900px) {
+        &::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    p {
+      font-size: 1.55rem;
+      line-height: 1.8;
+      color: #4a4a4a;
+      max-width: 640px;
+      margin: 0;
+      opacity: 0.9;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #2e2e2e;
+      }
+    }
+  }
+
+  &__image {
+    flex: 1;
+    min-width: 360px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInRight 1.3s ease both;
+
+    img {
+      width: 100%;
+      max-width: 620px;
+      max-height: 100%;
+      border-radius: 22px;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12),
+        0 12px 60px rgba(0, 0, 0, 0.08);
+      transform: scale(1);
+      transition:
+        transform 0.6s ease,
+        box-shadow 0.6s ease;
+
+      &:hover {
+        transform: scale(1.04);
+        box-shadow:
+          0 12px 45px rgba(0, 0, 0, 0.2),
+          0 16px 70px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08), transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(4px);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -100px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent 70%);
+    filter: blur(40px);
+    border-radius: 50%;
+    z-index: 0;
+  }
+}

@@ -1,0 +1,116 @@
+.about-values {
+  position: relative;
+  padding: clamp(1rem, 8vw, 2rem) 1rem;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  overflow: hidden;
+
+  &__title {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    color: #111;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -0.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background: linear-gradient(90deg, #d4af37, #ffda6a);
+      border-radius: 3px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(2rem, 3vw, 3rem);
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  &__item {
+    background: #fff;
+    border-radius: 18px;
+    padding: clamp(2rem, 4vw, 2.5rem);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.05), transparent 60%);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  &__icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212, 175, 55, 0.08);
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.2rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+
+    .about-values__item:hover & {
+      background: rgba(212, 175, 55, 0.15);
+      transform: scale(1.1);
+    }
+  }
+
+  &__icon {
+    color: #d4af37;
+  }
+
+  &__name {
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+    color: #222;
+  }
+
+  &__text {
+    font-size: 1.35rem;
+    color: #555;
+    line-height: 1.65;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent 70%);
+    filter: blur(40px);
+    z-index: 0;
+  }
+}

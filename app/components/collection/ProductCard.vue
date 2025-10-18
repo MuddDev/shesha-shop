@@ -49,14 +49,17 @@ const colorName = computed(() => {
 
 // 🛒 Додати в кошик
 const addToCart = () => {
+  if (!selectedVariant.value) return
+
   cart.addItem({
-    id: selectedVariant.value?.id || props.product.id,
+    id: selectedVariant.value.id,
     title: props.product.title,
     price: Number(price.value),
     image: currentImage.value,
     quantity: 1,
     handle: props.product.handle,
-    vendor: props.product.vendor
+    vendor: props.product.vendor,
+    variantOptions: selectedVariant.value.selectedOptions
   })
 }
 </script>
