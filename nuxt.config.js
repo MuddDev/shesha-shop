@@ -66,5 +66,22 @@ export default defineNuxtConfig({
       cssCodeSplit: false
     }
   },
-  devtools: { enabled: true }
+  devtools: { enabled: true },
+  nitro: {
+    // 🔹 Вмикає сторінкове кешування (HTML відповіді)
+    routeRules: {
+      '/': { swr: true, cache: { maxAge: 60 * 60 * 6 } }, // головна кешується на 6 годин
+      '/collections/**': { swr: true, cache: { maxAge: 60 * 30 } }, // колекції на 30 хв
+      '/products/**': { swr: true, cache: { maxAge: 60 * 60 } }, // продукти — 1 год
+      '/about': { swr: true, cache: { maxAge: 60 * 60 * 24 } } // статичні сторінки — 1 день
+    },
+
+    // 🔹 Загальні параметри кешу Nitro (серверне зберігання)
+    storage: {
+      cache: {
+        driver: 'fs', // можеш змінити на 'memory' або 'redis'
+        base: './.nitro/cache' // куди зберігати
+      }
+    }
+  }
 })
