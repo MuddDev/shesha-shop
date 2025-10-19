@@ -2,7 +2,7 @@
   &-box {
     margin-bottom: 1rem;
   }
-  background: #fff;
+  background: var(--clr-surface);
   .benefits-inner__title {
     font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: 700;
@@ -19,15 +19,15 @@
   }
 
   .benefits-inner__box {
-    background: #fafafa;
-    border: 1px solid #eee;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
     border-radius: 0.75rem;
     padding: 1.5rem;
     transition: all 0.3s ease;
     height: 100%;
 
     &:hover {
-      background: #fff;
+      background: var(--clr-surface);
       border-color: var(--clr-accent);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     }
@@ -37,7 +37,7 @@
     display: block;
     font-size: 2rem;
     font-weight: 700;
-    color: var(--clr-accent, #e53935);
+    color: var(--clr-accent, --clr-aler);
     margin-bottom: 0.5rem;
   }
 
@@ -59,12 +59,12 @@
     align-items: center;
     gap: 0.3rem;
     font-weight: 600;
-    color: var(--clr-muted, #111);
+    color: var(--clr-muted, --clr-text);
     text-decoration: none;
     transition: color 0.3s ease;
 
     &:hover {
-      color: var(--clr-accent, #e53935);
+      color: var(--clr-accent, --clr-aler);
     }
   }
 }

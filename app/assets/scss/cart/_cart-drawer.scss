@@ -2,15 +2,14 @@
   position: relative;
   z-index: 100;
 
-  /* === OVERLAY (затемнення) === */
   &__overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: var(--clr-overlay);
     opacity: 0;
     visibility: hidden;
     backdrop-filter: blur(2px);
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
     z-index: 90;
 
     &--visible {
@@ -19,7 +18,6 @@
     }
   }
 
-  /* === DRAWER PANEL === */
   &__panel {
     position: fixed;
     top: 0;
@@ -27,13 +25,13 @@
     width: 90%;
     max-width: 420px;
     height: 100vh;
-    background: #fff;
-    box-shadow: -4px 0 25px rgba(0, 0, 0, 0.15);
+    background: var(--clr-bg);
+    box-shadow: -4px 0 25px var(--clr-shadow-strong);
     transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     display: flex;
     flex-direction: column;
     z-index: 120;
-    padding: 1.5rem 1.25rem;
+    padding: var(--space-5) var(--space-4);
     animation: drawerSlideOut 0.4s ease forwards;
 
     &--open {
@@ -42,18 +40,17 @@
     }
   }
 
-  /* === HEADER === */
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--clr-border);
+    padding-bottom: var(--space-4);
 
     h2 {
-      font-size: 1.1rem;
+      font-size: var(--fs-base);
       font-weight: 600;
-      color: #1a1a1a;
+      color: var(--clr-text-dark);
       letter-spacing: 0.02em;
       text-transform: uppercase;
     }
@@ -65,56 +62,54 @@
 
       .material-icons {
         font-size: 24px;
-        color: #1a1a1a;
+        color: var(--clr-text-dark);
         transition:
-          color 0.25s ease,
-          transform 0.25s ease;
+          color var(--transition-fast),
+          transform var(--transition-fast);
       }
 
       &:hover .material-icons {
-        color: #e78a2f;
+        color: var(--clr-accent-hover);
         transform: rotate(90deg);
       }
     }
   }
 
-  /* === BODY === */
   &__body {
     flex: 1;
-    padding: 1rem 0;
+    padding: var(--space-4) 0;
     overflow-y: auto;
-    color: #555;
-    font-size: 0.95rem;
+    color: var(--clr-text-muted);
+    font-size: var(--fs-sm);
 
     p {
       text-align: center;
-      padding-top: 2rem;
-      color: #999;
-      font-size: 0.95rem;
+      padding-top: var(--space-6);
+      color: var(--clr-text-light);
+      font-size: var(--fs-sm);
     }
   }
 
-  /* === FOOTER === */
   &__footer {
-    border-top: 1px solid #eee;
-    padding-top: 1rem;
+    border-top: 1px solid var(--clr-border);
+    padding-top: var(--space-4);
   }
 
   &__checkout {
     width: 100%;
     padding: 0.9rem;
-    background: linear-gradient(135deg, #ffae00, #e78a2f);
-    color: #fff;
+    background: linear-gradient(135deg, var(--clr-warning), var(--clr-accent-hover));
+    color: var(--clr-bg);
     font-weight: 600;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    transition: all 0.25s ease;
+    transition: all var(--transition-fast);
 
     &:hover {
-      background: linear-gradient(135deg, #e78a2f, #d4700c);
+      background: linear-gradient(135deg, var(--clr-accent-hover), var(--clr-warning-dark));
       transform: translateY(-1px);
     }
 
