@@ -1,0 +1,22 @@
+.faq-hero {
+  background: linear-gradient(135deg, var(--clr-bg-header) 0%, #000 100%);
+  color: var(--clr-bg);
+  text-align: center;
+  padding: var(--space-12) var(--container-padding);
+
+  &__title {
+    font-family: var(--font-primary);
+    font-size: var(--fs-3xl);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+  }
+
+  &__subtitle {
+    font-size: var(--fs-base);
+    opacity: 0.9;
+    color: var(--clr-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+}

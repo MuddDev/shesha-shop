@@ -43,5 +43,9 @@
 @use "pages/about/about-values" as *;
 @use "pages/about/about-story" as *;
 @use "pages/about/about-cta" as *;
+@use "pages/faq/faq-page" as *;
+@use "pages/faq/faq-hero" as *;
+@use "pages/faq/faq-accordion" as *;
+@use "pages/faq/faq-category-grid" as *;
 
 @use "footer/footer" as *;

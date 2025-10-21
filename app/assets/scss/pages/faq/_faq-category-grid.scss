@@ -1,0 +1,47 @@
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.faq-card {
+  background: var(--clr-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--clr-border-light);
+  box-shadow: var(--shadow-soft);
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+
+  &:hover {
+    border-color: var(--clr-accent);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  &__icon {
+    color: var(--clr-accent);
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: var(--fs-base);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    color: var(--clr-text-dark);
+    letter-spacing: 0.015em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .faq-card {
+    padding: var(--space-5) var(--space-6);
+  }
+}
