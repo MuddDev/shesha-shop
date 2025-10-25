@@ -1,28 +1,34 @@
 export const useTelegram = () => {
-  const config = useRuntimeConfig()
-  const token = config.public.telegramBotToken
-  const chatId = config.public.telegramChatId
+    const config = useRuntimeConfig()
 
-  if (!token || !chatId) {
-    console.warn('⚠️ Telegram config missing in runtimeConfig')
-  }
+    const sendMessage = async (text) => {
+        try {
+            const token = config.public.telegramBotToken
+            const chatId = config.public.telegramChatId
 
-  const sendMessage = async text => {
-    try {
-      const url = `https://api.telegram.org/bot${token}/sendMessage`
-      const body = {
-        chat_id: chatId,
-        text,
-        parse_mode: 'Markdown'
-      }
+            if (!token || !chatId) {
+                console.error('❌ Missing Telegram token or chatId in config')
+                return false
+            }
 
-      const res = await $fetch(url, { method: 'POST', body })
-      return !!(res.ok || res.result)
-    } catch (e) {
-      console.error('❌ Telegram Error:', e)
-      return false
+            // Виклик відбувається через SSR (CORS не чіпляється)
+            await $fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: 'POST',
+                body: {
+                    chat_id: chatId,
+                    text,
+                    parse_mode: 'Markdown'
+                },
+                server: true // 👈 це головне — змушує Nuxt зробити запит сервером, не браузером
+            })
+
+            console.log('✅ Telegram відправлено успішно')
+            return true
+        } catch (e) {
+            console.error('❌ Telegram Error:', e)
+            return false
+        }
     }
-  }
 
-  return { sendMessage }
+    return { sendMessage }
 }
