@@ -1,0 +1,21 @@
+.contact-hero {
+  background: linear-gradient(135deg, var(--clr-bg-header), #000);
+  color: var(--clr-white-85);
+  text-align: center;
+  padding: var(--space-12) var(--container-padding);
+
+  &__title {
+    font-size: var(--fs-3xl);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+  }
+
+  &__subtitle {
+    font-size: var(--fs-base);
+    color: var(--clr-white-70);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}

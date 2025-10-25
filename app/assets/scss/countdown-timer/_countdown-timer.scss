@@ -1,27 +1,28 @@
 @use "../abstracts/mixins" as *;
+
 .countdown {
   .countdown-inner {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 0.75rem;
+    border-radius: var(--radius-lg);
     padding: clamp(2rem, 5vw, 4rem);
     position: relative;
     overflow: hidden;
-    color: #fff;
+    color: var(--clr-bg);
 
     &::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.4);
+      background: var(--clr-overlay-light);
     }
 
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: var(--space-6);
     z-index: 1;
   }
 
@@ -29,6 +30,7 @@
     position: relative;
     max-width: 50%;
     z-index: 2;
+
     @media (max-width: 768px) {
       max-width: 100%;
       text-align: center;
@@ -38,18 +40,20 @@
   .countdown-title {
     font-size: clamp(1.8rem, 3vw, 2.6rem);
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-5);
+    color: var(--clr-bg);
   }
 
   .countdown-btn {
-    background: #27ae60;
-    color: #fff;
+    background: var(--clr-success-bright);
+    color: var(--clr-bg);
     font-weight: 600;
     padding: 0.75rem 1.8rem;
     border-radius: 50px;
     text-decoration: none;
     display: inline-block;
-    transition: background 0.3s ease;
+    transition: background var(--transition-base);
+
     &:hover {
       background: var(--clr-accent);
     }
@@ -60,20 +64,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: var(--space-4);
     flex-wrap: wrap;
     z-index: 2;
+
     @include respond(mobile) {
       margin: 0 auto;
     }
 
     .timer-block {
       background: var(--clr-bg-bage);
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       padding: 0.8rem 1.2rem;
       text-align: center;
       min-width: 70px;
-      color: #fff;
+      color: var(--clr-bg);
     }
 
     .timer-value {
@@ -83,7 +88,7 @@
     }
 
     .timer-label {
-      font-size: 0.8rem;
+      font-size: var(--fs-xs);
       text-transform: capitalize;
       opacity: 0.85;
     }
