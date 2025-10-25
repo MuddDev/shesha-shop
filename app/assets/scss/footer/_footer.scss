@@ -1,16 +1,17 @@
 @use "../abstracts/mixins" as *;
+
 .footer {
   background: var(--clr-bg-header);
-  color: #fff;
-  padding: 3rem 0 1.5rem;
-  font-size: 0.95rem;
+  color: var(--clr-bg);
+  padding: var(--space-8) 0 var(--space-5);
+  font-size: var(--fs-sm);
 
   .footer__inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
   }
 
   .footer__col {
@@ -20,19 +21,21 @@
       list-style: none;
       padding: 0;
       margin: 0;
+
       li {
         display: flex;
         align-items: center;
-        gap: 0.2rem;
+        gap: var(--space-1);
       }
+
       li + li {
-        margin-top: 0.5rem;
+        margin-top: var(--space-2);
       }
 
       a {
-        color: rgba(255, 255, 255, 0.85);
+        color: var(--clr-white-85);
         text-decoration: none;
-        transition: color 0.2s ease;
+        transition: color var(--transition-fast);
 
         &:hover {
           color: var(--clr-accent);
@@ -42,14 +45,14 @@
 
     p,
     a {
-      color: rgba(255, 255, 255, 0.8);
+      color: var(--clr-white-80);
       text-decoration: none;
       line-height: 1.6;
     }
   }
 
   &__logo {
-    font-size: 1.6rem;
+    font-size: var(--fs-lg);
     font-weight: 700;
     color: var(--clr-accent);
     text-decoration: none;
@@ -64,17 +67,15 @@
 
   &__tagline {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    @include respond(mobile) {
-    }
+    color: var(--clr-white-70);
   }
 
   &__bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    padding-top: 1rem;
+    border-top: 1px solid var(--clr-white-15);
+    padding-top: var(--space-4);
     text-align: center;
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--clr-white-70);
   }
 
   @media (max-width: 768px) {

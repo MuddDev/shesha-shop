@@ -47,5 +47,9 @@
 @use "pages/faq/faq-hero" as *;
 @use "pages/faq/faq-accordion" as *;
 @use "pages/faq/faq-category-grid" as *;
+@use "pages/contact/contact-page" as *;
+@use "pages/contact/contact-hero" as *;
+@use "pages/contact/contact-grid" as *;
+@use "pages/contact/contact-form" as *;
 
 @use "footer/footer" as *;

@@ -15,7 +15,9 @@ export default defineNuxtConfig({
       shopifyDomain: process.env.NUXT_PUBLIC_SHOPIFY_DOMAIN,
       shopifyApiVersion: process.env.NUXT_PUBLIC_SHOPIFY_API_VERSION || '2025-04',
       supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
-      supabaseKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY
+      supabaseKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
+      telegramBotToken: process.env.NUXT_PUBLIC_TELEGRAM_BOT_TOKEN,
+      telegramChatId: process.env.NUXT_PUBLIC_TELEGRAM_CHAT_ID
     }
   },
 

@@ -1,0 +1,28 @@
+{
+  "contacts": [
+    {
+      "icon": "mdi:telegram",
+      "title": "Telegram",
+      "value": "@sheshashop",
+      "link": "https://t.me/sheshashop"
+    },
+    {
+      "icon": "mdi:email-outline",
+      "title": "Email",
+      "value": "hello@shesha.shop",
+      "link": "mailto:hello@shesha.shop"
+    },
+    {
+      "icon": "mdi:phone-outline",
+      "title": "Телефон",
+      "value": "+38 (066) 254-37-96",
+      "link": "tel:+380662543796"
+    },
+    {
+      "icon": "mdi:map-marker-outline",
+      "title": "Адреса",
+      "value": "м. Хмельницький",
+      "link": "https://maps.google.com"
+    }
+  ]
+}
