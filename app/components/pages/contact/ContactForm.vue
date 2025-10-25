@@ -1,67 +1,8 @@
 <script setup>
-import { ref } from 'vue'
-import { useTelegram } from '~/composables/useTelegram'
+import { useContactForm } from '~/composables/forms/useContactForm'
 
-const { sendMessage } = useTelegram()
-
-// поля
-const name = ref('')
-const email = ref('')
-const message = ref('')
-
-// стани
-const honeypot = ref('')
-const status = ref(null)
-const loading = ref(false)
-const errors = ref({})
-const showPopup = ref(false)
-
-const validateEmail = v => /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v)
-
-const validateForm = () => {
-  const newErrors = {}
-
-  if (!name.value.trim()) newErrors.name = 'Введіть ваше ім’я'
-  if (!email.value.trim()) newErrors.email = 'Введіть email'
-  else if (!validateEmail(email.value)) newErrors.email = 'Некоректний email'
-  if (!message.value.trim()) newErrors.message = 'Напишіть повідомлення (мін. 10 символів)'
-  else if (message.value.trim().length < 10) newErrors.message = 'Повідомлення закоротке'
-
-  errors.value = newErrors
-  return Object.keys(newErrors).length === 0
-}
-
-const submitForm = async () => {
-  if (honeypot.value) return
-  if (!validateForm()) return
-
-  loading.value = true
-  status.value = null
-
-  const text = `
-📩 *Нове повідомлення з форми Shesha Shop*
-👤 *Ім’я:* ${name.value}
-📧 *Email:* ${email.value}
-💬 *Повідомлення:*
-${message.value}
-`
-
-  const success = await sendMessage(text)
-
-  if (success) {
-    status.value = 'success'
-    showPopup.value = true
-    name.value = ''
-    email.value = ''
-    message.value = ''
-    errors.value = {}
-    setTimeout(() => (showPopup.value = false), 3000)
-  } else {
-    status.value = 'error'
-  }
-
-  loading.value = false
-}
+const { name, email, message, honeypot, status, loading, showPopup, errors, submitForm } =
+  useContactForm()
 </script>
 
 <template>
