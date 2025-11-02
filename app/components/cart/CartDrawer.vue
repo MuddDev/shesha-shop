@@ -8,10 +8,18 @@ defineProps({
   isOpen: Boolean
 })
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'checkout'])
 
 const removeItem = id => cart.removeItem(id)
 const updateQuantity = ({ id, change }) => cart.updateQuantity(id, change)
+
+const handleCheckout = () => {
+  // 🔥 викликаємо подію для батька
+  emit('checkout')
+
+  // (поки що просто виводимо в консоль для тесту)
+  console.log('🛒 Checkout button clicked')
+}
 </script>
 
 <template>
@@ -66,7 +74,12 @@ const updateQuantity = ({ id, change }) => cart.updateQuantity(id, change)
           <strong>{{ cart.totalPrice }} ₴</strong>
         </div>
 
-        <button class="cart-drawer__checkout">Оформити замовлення</button>
+        <button
+          class="cart-drawer__checkout"
+          @click="handleCheckout"
+        >
+          Оформити замовлення
+        </button>
       </footer>
     </aside>
   </div>

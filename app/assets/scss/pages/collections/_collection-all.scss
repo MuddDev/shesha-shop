@@ -1,6 +1,6 @@
 .collections-list {
   padding: 3rem 0;
-  background: #fafafa;
+  background: var(--clr-surface);
 
   &__header {
     text-align: center;
@@ -9,14 +9,14 @@
     h1 {
       font-size: clamp(1.8rem, 3vw, 2.4rem);
       font-weight: 700;
-      color: #111;
+      color: var(--clr-text-deep);
       margin-bottom: 0.5rem;
     }
 
     p {
       opacity: 0.7;
       font-size: 1rem;
-      color: #555;
+      color: var(--clr-text-muted);
     }
   }
 
@@ -53,17 +53,17 @@
   &__link {
     display: flex;
     flex-direction: column;
-    border-radius: 1rem;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     text-decoration: none;
-    background: #fff;
-    border: 1px solid #eee;
-    transition: all 0.3s ease;
+    background: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    transition: all var(--transition-base);
     position: relative;
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--shadow-hover-card);
     }
   }
 
@@ -86,7 +86,7 @@
     .collections-list__overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.15);
+      background: var(--clr-overlay-light);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -99,12 +99,12 @@
     }
 
     .collections-list__cta {
-      background: #16a34a;
-      color: #fff;
+      background: var(--clr-success-bright);
+      color: var(--clr-bg);
       font-weight: 600;
       font-size: 0.9rem;
       padding: 0.45rem 1rem;
-      border-radius: 2rem;
+      border-radius: var(--radius-xl);
       transform: translateY(10px);
       opacity: 0;
       transition: all 0.3s ease;
@@ -122,13 +122,13 @@
     h3 {
       font-weight: 600;
       font-size: 1.1rem;
-      color: #111;
+      color: var(--clr-text-deep);
       margin-bottom: 0.4rem;
     }
 
     p {
       font-size: 0.9rem;
-      color: #666;
+      color: var(--clr-text-gray);
       line-height: 1.4;
       opacity: 0.9;
     }

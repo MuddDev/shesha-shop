@@ -3,6 +3,15 @@ import { useCartStore } from '@/stores/useCartStore'
 import CartDrawer from '~/components/cart/CartDrawer.vue'
 
 const cart = useCartStore()
+
+const startCheckout = () => {
+  console.log('🔥 Checkout event received — переходимо на сторінку checkout')
+
+  if (process.client) {
+    cart.closeCart()
+    navigateTo('/checkout') // ✅ у Nuxt це краще, ніж router.push
+  }
+}
 </script>
 
 <template>
@@ -26,6 +35,7 @@ const cart = useCartStore()
       v-show="cart.isOpen"
       :is-open="cart.isOpen"
       @close="cart.closeCart"
+      @checkout="startCheckout"
     />
   </div>
 </template>

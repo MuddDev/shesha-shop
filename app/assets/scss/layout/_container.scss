@@ -9,7 +9,6 @@
   padding-inline: var(--container-padding);
 }
 
-/* Варіанти контейнера */
 .container--wide {
   max-width: var(--container-wide);
 }
@@ -27,7 +26,6 @@
   }
 }
 
-/* Зручно для секцій */
 .section {
   padding-block: clamp(3rem, 6vw, 6rem);
 }

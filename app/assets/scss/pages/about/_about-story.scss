@@ -1,7 +1,7 @@
 .about-story {
   position: relative;
   padding: clamp(4rem, 8vw, 9rem) 1.5rem;
-  background: linear-gradient(180deg, #fefefe 0%, #f8f8f8 100%);
+  background: var(--grad-section-soft);
   overflow: hidden;
 
   &__inner {
@@ -27,7 +27,7 @@
     h2 {
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 700;
-      color: #111;
+      color: var(--clr-text-deep);
       margin-bottom: 1.5rem;
       position: relative;
       display: inline-block;
@@ -41,8 +41,8 @@
         left: 0;
         width: 70px;
         height: 3px;
-        background: linear-gradient(90deg, #d4af37, #ffda6a);
-        border-radius: 3px;
+        background: var(--grad-gold-line);
+        border-radius: var(--radius-sm);
       }
 
       @media (max-width: 900px) {
@@ -56,14 +56,14 @@
     p {
       font-size: 1.55rem;
       line-height: 1.8;
-      color: #4a4a4a;
+      color: var(--clr-text-base);
       max-width: 640px;
       margin: 0;
       opacity: 0.9;
-      transition: color 0.3s ease;
+      transition: var(--transition-base);
 
       &:hover {
-        color: #2e2e2e;
+        color: var(--clr-text-strong);
       }
     }
   }
@@ -81,22 +81,18 @@
       width: 100%;
       max-width: 620px;
       max-height: 100%;
-      border-radius: 22px;
+      border-radius: var(--radius-xl);
       object-fit: cover;
       aspect-ratio: 4 / 3;
-      box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.12),
-        0 12px 60px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--shadow-image);
       transform: scale(1);
       transition:
-        transform 0.6s ease,
-        box-shadow 0.6s ease;
+        transform var(--transition-slow),
+        box-shadow var(--transition-slow);
 
       &:hover {
         transform: scale(1.04);
-        box-shadow:
-          0 12px 45px rgba(0, 0, 0, 0.2),
-          0 16px 70px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-image-hover);
       }
     }
 
@@ -105,7 +101,7 @@
       position: absolute;
       inset: 0;
       border-radius: 22px;
-      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08), transparent 70%);
+      background: radial-gradient(circle at center, var(--clr-gold-translucent), transparent 70%);
       pointer-events: none;
       z-index: -1;
       filter: blur(4px);
@@ -141,7 +137,7 @@
     right: -100px;
     width: 350px;
     height: 350px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent 70%);
+    background: radial-gradient(circle, var(--clr-gold-translucent), transparent 70%);
     filter: blur(40px);
     border-radius: 50%;
     z-index: 0;
