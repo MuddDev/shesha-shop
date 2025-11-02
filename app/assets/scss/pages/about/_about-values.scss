@@ -2,14 +2,14 @@
   position: relative;
   padding: clamp(1rem, 8vw, 2rem) 1rem;
   text-align: center;
-  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  background: var(--grad-section-soft);
   overflow: hidden;
 
   &__title {
     font-size: clamp(2.2rem, 4vw, 3rem);
     font-weight: 700;
     margin-bottom: clamp(2.5rem, 6vw, 4rem);
-    color: #111;
+    color: var(--clr-text-deep);
     position: relative;
     display: inline-block;
 
@@ -21,8 +21,8 @@
       transform: translateX(-50%);
       width: 70px;
       height: 3px;
-      background: linear-gradient(90deg, #d4af37, #ffda6a);
-      border-radius: 3px;
+      background: var(--grad-gold-line);
+      border-radius: var(--radius-sm);
     }
   }
 
@@ -35,18 +35,18 @@
   }
 
   &__item {
-    background: #fff;
-    border-radius: 18px;
+    background: var(--clr-bg);
+    border-radius: var(--radius-lg);
     padding: clamp(2rem, 4vw, 2.5rem);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
-    transition: all 0.35s ease;
+    box-shadow: var(--shadow-medium);
+    transition: all var(--transition-base);
     position: relative;
     overflow: hidden;
     isolation: isolate;
 
     &:hover {
       transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--shadow-hover-card);
     }
 
     &::before {
@@ -54,10 +54,10 @@
       position: absolute;
       inset: 0;
       border-radius: 18px;
-      background: linear-gradient(145deg, rgba(212, 175, 55, 0.05), transparent 60%);
+      background: linear-gradient(145deg, var(--clr-gold-translucent), transparent 60%);
       z-index: -1;
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity var(--transition-slow);
     }
 
     &:hover::before {
@@ -69,12 +69,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(212, 175, 55, 0.08);
+    background: var(--clr-gold-translucent);
     width: 70px;
     height: 70px;
     margin: 0 auto 1.2rem;
     border-radius: 50%;
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
 
     .about-values__item:hover & {
       background: rgba(212, 175, 55, 0.15);
@@ -83,19 +83,19 @@
   }
 
   &__icon {
-    color: #d4af37;
+    color: var(--clr-gold);
   }
 
   &__name {
     font-weight: 600;
     margin-bottom: 0.8rem;
     font-size: 1.5rem;
-    color: #222;
+    color: var(--clr-text-strong);
   }
 
   &__text {
     font-size: 1.35rem;
-    color: #555;
+    color: var(--clr-text-muted);
     line-height: 1.65;
     max-width: 340px;
     margin: 0 auto;
@@ -109,7 +109,7 @@
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent 70%);
+    background: radial-gradient(circle, var(--clr-gold-translucent), transparent 70%);
     filter: blur(40px);
     z-index: 0;
   }

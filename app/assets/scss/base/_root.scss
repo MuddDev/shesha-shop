@@ -6,7 +6,6 @@
   --font-primary: "Fixel Display", sans-serif;
 
   /* === Font Scale === */
-  /* Типографіка в clamp — автоматично адаптується */
   --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.85rem);
   --fs-sm: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
   --fs-base: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
@@ -59,6 +58,9 @@
   --clr-shadow-dropdown: rgba(0, 0, 0, 0.08);
   --clr-overlay-strong: rgba(0, 0, 0, 0.5);
   --clr-text-gray: #666;
+  --clr-bg-soft-gold: #f9f6ef;
+  --clr-gold: #d4af37;
+  --clr-gold-light: #ffde8a;
 
   /* === Badge gradients === */
   --grad-sale: linear-gradient(135deg, #ffae00, #e78a2f);
@@ -66,6 +68,28 @@
   --grad-new: linear-gradient(135deg, #56c271, #3da85a);
   --grad-bestseller: linear-gradient(135deg, #3498db, #2c80c9);
   --grad-limited: linear-gradient(135deg, #9b59b6, #7b3ea6);
+  --clr-gold-translucent: rgba(212, 175, 55, 0.08);
+  --grad-cta-bg: linear-gradient(140deg, #f9f6ef 0%, #ffffff 100%);
+  --grad-gold-line: linear-gradient(90deg, #d4af37, #ffde8a);
+  --grad-section-soft: linear-gradient(180deg, #fefefe 0%, #f8f8f8 100%);
+
+  /* === Box Shadows === */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 8px 40px rgba(0, 0, 0, 0.1);
+  --shadow-cta: 0 6px 18px rgba(0, 0, 0, 0.04), 0 8px 40px var(--clr-gold-translucent);
+  --shadow-btn: 0 4px 14px rgba(0, 0, 0, 0.1);
+  --shadow-btn-hover: 0 6px 24px rgba(212, 175, 55, 0.25), 0 10px 40px rgba(0, 0, 0, 0.1);
+  --shadow-btn-active: 0 3px 10px rgba(0, 0, 0, 0.15);
+  --shadow-text-dark: 0 3px 10px rgba(0, 0, 0, 0.6);
+  --shadow-image: 0 8px 30px rgba(0, 0, 0, 0.12), 0 12px 60px rgba(0, 0, 0, 0.08);
+  --shadow-image-hover: 0 12px 45px rgba(0, 0, 0, 0.2), 0 16px 70px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 18px rgba(0, 0, 0, 0.04);
+  --shadow-hover-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-sidebar: 0 4px 14px rgba(0, 0, 0, 0.05);
+  --shadow-card-soft: 0 3px 8px rgba(0, 0, 0, 0.04);
 
   /* === Spacing scale (8-based) === */
   --space-1: 0.25rem;
