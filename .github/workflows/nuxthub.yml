@@ -1,33 +1,29 @@
-name: Deploy to NuxtHub
-on: push
+name: Deploy
+on:
+  push:
+    branches: [ main ]
 
 jobs:
-  deploy:
-    name: 'Deploy to NuxtHub'
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Ensure NuxtHub module is installed
-        run: npx nuxthub@latest ensure
+      - name: Build project
+        run: npm run build
 
-      - name: Build & Deploy to NuxtHub
-        uses: nuxt-hub/action@v2
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
-          project-key: shesha-shop-q4fn
+          name: nuxt-output
+          path: .output/
