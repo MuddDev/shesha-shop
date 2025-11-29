@@ -1,6 +1,7 @@
 export default defineEventHandler(async event => {
   const { city } = await readBody(event)
   const config = useRuntimeConfig()
+  event.node.res.setHeader('Cache-Control', 'no-store')
 
   const response = await $fetch('https://api.ukrposhta.ua/v3/offices/search', {
     method: 'POST',

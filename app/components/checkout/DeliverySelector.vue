@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue'
+import { watchDebounced } from '@vueuse/core'
 import ds from '~/data/delivery-selector.json'
 
 const config = useRuntimeConfig()
@@ -63,15 +64,15 @@ const selectCity = item => {
 }
 
 // === DEBOUNCE search (єдиний правильний watch)
-watch(
-  () => local.value.city,
-  () => {
-    if (isSelectingCity.value) return
-
-    clearTimeout(cityTimeout)
-    cityTimeout = setTimeout(searchNovaPoshtaCities, 350)
-  }
+watchDebounced(
+    () => local.value.city,
+    () => {
+      if (!local.value.city.trim() || isSelectingCity.value) return
+      searchNovaPoshtaCities()
+    },
+    { debounce: 350, maxWait: 600 }
 )
+
 
 // ⭐ Пошук міст НП
 const searchNovaPoshtaCities = async () => {
