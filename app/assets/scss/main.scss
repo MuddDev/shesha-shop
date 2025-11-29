@@ -18,6 +18,8 @@
 @use "cart/cart-item" as *;
 @use "search/search-button" as *;
 @use "search/search-drawer" as *;
+@use "checkout/success-popup" as *;
+@use "checkout/delivery-selector" as *;
 @use "announcement-bar/announcement-bar" as *;
 @use "collections/featured-collections" as *;
 @use "collections/collection-spotlight" as *;
@@ -51,5 +53,6 @@
 @use "pages/contact/contact-hero" as *;
 @use "pages/contact/contact-grid" as *;
 @use "pages/contact/contact-form" as *;
+@use "pages/checkout/checkout-page" as *;
 
 @use "footer/footer" as *;

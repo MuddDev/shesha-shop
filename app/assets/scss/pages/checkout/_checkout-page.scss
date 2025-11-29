@@ -1,0 +1,98 @@
+.checkout {
+  padding: clamp(1.5rem, 4vw, 3rem) 0;
+  background: #fff;
+  color: #111;
+  font-family: "Inter", "Fixel Display", sans-serif;
+  overflow-x: hidden; // захищає від горизонтального scroll
+
+  &__header {
+    text-align: center;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+    padding: 0 1rem;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #000;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    margin-top: 0.4rem;
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    color: #666;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      padding: 0 0.75rem;
+    }
+  }
+
+  &__form,
+  &__summary {
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border: 1px solid #eaeaea;
+    border-radius: 14px;
+    background: #fcfcfc;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.05);
+    overflow-x: hidden;
+  }
+
+  &__form {
+    @media (max-width: 480px) {
+      padding: 1rem;
+    }
+  }
+
+  &__summary {
+    background: #f9f9f9;
+    position: sticky;
+    top: 1rem;
+    align-self: start;
+
+    @media (max-width: 992px) {
+      position: static;
+      margin-top: 0.75rem;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    color: #777;
+    padding: 3rem 1rem;
+
+    .checkout__back {
+      display: inline-block;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #0000;
+      transition: all 0.25s ease;
+
+      &:hover {
+        border-bottom: 1px solid #000;
+      }
+    }
+  }
+
+  /* Fade animations */
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.3s ease;
+  }
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+}

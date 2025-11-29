@@ -22,10 +22,15 @@ const totalAfterDiscount = computed(() => (cart.totalPrice - discountValue.value
 </script>
 
 <template>
-  <div class="checkout-summary">
-    <h2 class="checkout-summary__title">Ваше замовлення</h2>
+  <aside class="checkout-summary">
+    <!-- Header -->
+    <header class="cs-header">
+      <h2 class="cs-title">Ваше замовлення</h2>
+      <p class="cs-subtitle">Перевірте товари перед оформленням</p>
+    </header>
 
-    <div class="checkout-summary__list">
+    <!-- Items -->
+    <div class="cs-items">
       <CheckoutCard
         v-for="item in cart.items"
         :key="item.id"
@@ -33,140 +38,248 @@ const totalAfterDiscount = computed(() => (cart.totalPrice - discountValue.value
       />
     </div>
 
-    <div class="checkout-summary__divider" />
+    <div class="cs-divider" />
 
-    <div class="checkout-summary__line">
+    <!-- Subtotal -->
+    <div class="cs-row">
       <span>Сума товарів</span>
       <strong>{{ cart.totalPrice.toFixed(2) }} ₴</strong>
     </div>
 
-    <div class="checkout-summary__discount">
+    <!-- Promo -->
+    <div class="cs-promo">
       <input
         v-model="discountCode"
         type="text"
-        placeholder="Введіть промокод"
+        placeholder="Промокод"
         @keyup.enter="applyDiscount"
       />
-      <button @click="applyDiscount">Застосувати</button>
+      <button
+        class="cs-promo-btn"
+        @click="applyDiscount"
+      >
+        OK
+      </button>
     </div>
 
+    <!-- Discount -->
     <div
       v-if="discountValue"
-      class="checkout-summary__line discount"
+      class="cs-row cs-row--discount"
     >
       <span>Знижка</span>
       <strong>-{{ discountValue.toFixed(2) }} ₴</strong>
     </div>
 
-    <div class="checkout-summary__line total">
-      <span>До сплати</span>
-      <strong>{{ totalAfterDiscount }} ₴</strong>
+    <!-- Total -->
+    <div class="cs-total-block">
+      <div class="cs-total-line">
+        <span class="cs-total-label">До сплати</span>
+        <strong class="cs-total-value">{{ totalAfterDiscount }} ₴</strong>
+      </div>
+      <p class="cs-total-note">Включає всі знижки</p>
     </div>
-  </div>
+  </aside>
 </template>
 
 <style scoped lang="scss">
 .checkout-summary {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  padding: clamp(2rem, 3vw, 3rem);
-  background: #f9f9f9;
-  border-radius: 16px;
-  border: 1px solid #eaeaea;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--clr-bg-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--clr-border-light);
 
-  &__title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #111;
-    margin-bottom: 0.5rem;
+  @media (max-width: 768px) {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
   }
+}
 
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+/* Header */
+.cs-header {
+  margin-bottom: var(--space-2);
+}
+
+.cs-title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--clr-text-deep);
+  margin-bottom: 0.25rem;
+}
+
+.cs-subtitle {
+  font-size: var(--fs-xs);
+  color: var(--clr-text-subtle);
+}
+
+/* Items wrapper */
+.cs-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Checkout Card Layout */
+.checkout-card {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+/* Квадратна мініатюра */
+.checkout-card__thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #f0f0f0;
+  border: 1px solid var(--clr-border-light);
+
+  img,
+  picture,
+  .nuxt-picture,
+  .nuxt-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* критично */
+    display: block;
   }
+}
 
-  &__divider {
-    height: 1px;
-    background: #e6e6e6;
-    margin: 0.5rem 0;
+/* Info */
+.checkout-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.checkout-card__title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--clr-text-strong);
+  line-height: 1.3;
+}
+
+.checkout-card__meta {
+  font-size: var(--fs-xs);
+  color: var(--clr-text-subtle);
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.checkout-card__price {
+  margin-left: auto;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--clr-text-deep);
+}
+
+/* Divider */
+.cs-divider {
+  height: 1px;
+  background: var(--clr-line);
+  margin: var(--space-2) 0;
+}
+
+/* Basic row */
+.cs-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-sm);
+  padding: var(--space-1) 0;
+
+  strong {
+    font-weight: 600;
+    color: var(--clr-text-strong);
   }
+}
 
-  &__line {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.95rem;
-    color: #333;
-    line-height: 1.5;
+.cs-row--discount {
+  color: var(--clr-danger-light);
 
-    strong {
-      font-weight: 600;
-      color: #000;
-    }
+  strong {
+    color: var(--clr-danger-light);
+  }
+}
 
-    &.discount {
-      color: #c0392b;
-      strong {
-        color: #c0392b;
-      }
-    }
+/* Promo code */
+.cs-promo {
+  display: flex;
+  gap: var(--space-2);
+  padding-top: var(--space-1);
 
-    &.total {
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-top: 1px solid #ddd;
-      padding-top: 0.75rem;
+  input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--clr-white);
+    border: 1px solid var(--clr-border-light);
+    font-size: var(--fs-sm);
+    transition:
+      border var(--transition-fast),
+      box-shadow var(--transition-fast);
+
+    &:focus {
+      outline: none;
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 0 3px var(--clr-accent-glow);
     }
   }
+}
 
-  &__discount {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
+.cs-promo-btn {
+  padding: 0 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--clr-accent);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
 
-    input {
-      flex: 1;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 0.65rem 1rem;
-      font-size: 0.95rem;
-      background: #fff;
-      color: #111;
-      transition:
-        border 0.2s,
-        box-shadow 0.2s;
-
-      &:focus {
-        outline: none;
-        border-color: #000;
-        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
-      }
-    }
-
-    button {
-      background: #111;
-      color: #fff;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      padding: 0 1.5rem;
-      cursor: pointer;
-      transition:
-        background 0.25s ease,
-        transform 0.1s ease;
-
-      &:hover {
-        background: #000;
-        transform: translateY(-1px);
-      }
-      &:active {
-        transform: translateY(0);
-      }
-    }
+  /* ВАЖЛИВО: без transform */
+  &:hover {
+    background: var(--clr-accent-hover);
   }
+}
+
+/* Total block */
+.cs-total-block {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background: var(--clr-white-85);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-soft);
+}
+
+.cs-total-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cs-total-label {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--clr-text-deep);
+}
+
+.cs-total-value {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--clr-text-deep);
+}
+
+.cs-total-note {
+  margin-top: 0.25rem;
+  font-size: var(--fs-xs);
+  color: var(--clr-text-light);
 }
 </style>
