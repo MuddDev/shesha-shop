@@ -18,7 +18,8 @@ export default defineNuxtConfig({
       supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
       supabaseKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
       telegramBotToken: process.env.NUXT_PUBLIC_TELEGRAM_BOT_TOKEN,
-      telegramChatId: process.env.NUXT_PUBLIC_TELEGRAM_CHAT_ID
+      telegramChatId: process.env.NUXT_PUBLIC_TELEGRAM_CHAT_ID,
+      NP_API_KEY: process.env.NUXT_PUBLIC_NP_API_KEY
     }
   },
 
