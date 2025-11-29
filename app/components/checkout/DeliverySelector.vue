@@ -4,7 +4,7 @@ import ds from '~/data/delivery-selector.json'
 
 const config = useRuntimeConfig()
 
-// === PROPS ===
+
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -22,7 +22,6 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 const local = ref({ ...props.modelValue })
 
-// Sync parent → local
 watch(
   () => props.modelValue,
   v => {
@@ -30,7 +29,6 @@ watch(
   }
 )
 
-// Sync local → parent
 watch(
   local,
   v => {
@@ -39,7 +37,6 @@ watch(
   { deep: true }
 )
 
-// === Local state ===
 const citySuggestions = ref([])
 const branches = ref([])
 const loadingCities = ref(false)
