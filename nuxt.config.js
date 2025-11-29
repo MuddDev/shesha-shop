@@ -41,7 +41,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   nitro: {
-    preset: 'node', // Деплой на HUN / Node
+    preset: 'cloudflare_pages',
     esbuild: { options: { target: 'esnext' } },
     moduleSideEffects: ['@vueuse/core'],
 
