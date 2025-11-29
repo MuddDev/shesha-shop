@@ -1,0 +1,41 @@
+{
+  "section": {
+    "deliveryMethod": "Спосіб доставки",
+    "city": "Місто доставки",
+    "branch": "Відділення",
+    "address": "Адреса (необовʼязково)"
+  },
+
+  "placeholder": {
+    "cityInput": "Почніть вводити назву міста",
+    "branchSelect": "Оберіть відділення",
+    "indexInput": "Поштовий індекс",
+    "addressInput": "Вулиця, будинок, квартира"
+  },
+
+  "loading": {
+    "cities": "Завантаження...",
+    "branches": "Завантаження відділень..."
+  },
+
+  "methods": [
+    {
+      "value": "nova-poshta",
+      "icon": "📦",
+      "title": "Нова Пошта",
+      "subtitle": "Доставка у відділення"
+    },
+    {
+      "value": "ukrposhta",
+      "icon": "📮",
+      "title": "Укрпошта",
+      "subtitle": "Дешевше, але довше"
+    },
+    {
+      "value": "pickup",
+      "icon": "🏬",
+      "title": "Самовивіз",
+      "subtitle": "Центральний склад Хмельницького"
+    }
+  ]
+}

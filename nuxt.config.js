@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   pages: true,
 
   runtimeConfig: {
+    NP_API_KEY: process.env.NUXT_PUBLIC_NP_API_KEY,
     public: {
       shopifyToken: process.env.NUXT_PUBLIC_SHOPIFY_TOKEN,
       shopifyDomain: process.env.NUXT_PUBLIC_SHOPIFY_DOMAIN,

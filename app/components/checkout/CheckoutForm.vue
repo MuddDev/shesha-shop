@@ -1,74 +1,156 @@
 <script setup>
+import { ref } from 'vue'
 import { useCartStore } from '@/stores/useCartStore'
-const cart = useCartStore()
+import { useTelegram } from '@/composables/telegram/useTelegram'
 
+import DeliverySelector from '@/components/checkout/DeliverySelector.vue'
+import PaymentSelector from '@/components/checkout/PaymentSelector.vue'
+
+const cart = useCartStore()
+const { sendMessage } = useTelegram()
+const emit = defineEmits(['success'])
+
+// Клієнт
 const name = ref('')
 const email = ref('')
 const phone = ref('')
-const address = ref('')
 const comment = ref('')
 
-const submitOrder = () => {
-  if (!name.value || !email.value || !phone.value || !address.value) {
-    alert('⚠️ Заповніть усі обов’язкові поля')
+// Доставка (через DeliverySelector.vue)
+const delivery = ref({
+  method: 'nova-poshta',
+  city: '',
+  cityRef: null,
+  branch: '',
+  index: '',
+  address: ''
+})
+
+// Оплата (через PaymentSelector.vue)
+const paymentMethod = ref('mono')
+
+const paymentDescriptions = {
+  mono: 'Оплатити онлайн через monobank.',
+  wayforpay: 'Оплата банківською карткою через WayForPay.',
+  cod: 'Готівкою або карткою при отриманні.',
+  invoice: 'Оплата за рахунком-фактурою.'
+}
+
+// SUBMIT ORDER + TELEGRAM
+const submitOrder = async () => {
+  if (!name.value || !phone.value) {
+    alert('⚠️ Заповніть обовʼязкові поля')
     return
   }
 
-  console.log('🧾 Замовлення оформлено:', {
-    name: name.value,
-    email: email.value,
-    phone: phone.value,
-    address: address.value,
-    comment: comment.value,
-    cart: cart.items
-  })
+  const totalPrice = cart.items.reduce((sum, i) => sum + i.price * i.quantity, 0)
 
-  alert('✅ Дякуємо! Замовлення оформлено. Ми звʼяжемося з вами найближчим часом.')
-  cart.clearCart()
-  navigateTo('/')
+  const orderData = {
+    customer: {
+      name: name.value,
+      email: email.value,
+      phone: phone.value
+    },
+    delivery: delivery.value,
+    payment: {
+      method: paymentMethod.value,
+      details: paymentDescriptions[paymentMethod.value]
+    },
+    comment: comment.value,
+    cart: cart.items,
+    total: totalPrice
+  }
+
+  const text = `
+🆕 *Нове замовлення*
+
+👤 *Клієнт*
+• ${orderData.customer.name}
+• ${orderData.customer.phone}
+• ${orderData.customer.email || '-'}
+
+🚚 *Доставка:* ${orderData.delivery.method}
+🏙 *Місто:* ${orderData.delivery.city || '-'}
+🏤 *Відділення:* ${orderData.delivery.branch || '-'}
+📮 *Індекс:* ${orderData.delivery.index || '-'}
+🏠 *Адреса:* ${orderData.delivery.address || '-'}
+
+💳 *Оплата:* ${orderData.payment.method}
+${orderData.payment.details}
+
+🛒 *Товари:*
+${orderData.cart.map(i => `• ${i.title} x${i.quantity} — ${i.price * i.quantity}₴`).join('\n')}
+
+💰 *Загальна сума:* **${orderData.total}₴**
+
+💬 *Коментар:*
+${orderData.comment || '-'}
+  `.trim()
+
+  const sent = await sendMessage(text)
+  if (!sent) {
+    alert('❌ Telegram не прийняв замовлення')
+    return
+  }
+
+  cart.clear()
+  emit('success')
 }
 </script>
 
 <template>
   <div class="checkout-form">
-    <h2 class="checkout-form__title">Дані для доставки</h2>
+    <h2 class="checkout-form__title">Дані для оформлення</h2>
 
     <form
       @submit.prevent="submitOrder"
       class="checkout-form__body"
     >
-      <input
-        v-model="name"
-        type="text"
-        placeholder="Ім’я та прізвище"
-        required
-      />
-      <input
-        v-model="email"
-        type="email"
-        placeholder="Email"
-        required
-      />
-      <input
-        v-model="phone"
-        type="tel"
-        placeholder="Телефон"
-        required
-      />
-      <input
-        v-model="address"
-        type="text"
-        placeholder="Адреса доставки"
-        required
-      />
+      <!-- ОСОБИСТІ ДАНІ -->
+      <div class="cf-section">
+        <h3>Особисті дані</h3>
+
+        <div class="cf-grid">
+          <input
+            v-model="name"
+            type="text"
+            placeholder="Ім’я та прізвище *"
+            required
+          />
+          <input
+            v-model="phone"
+            type="tel"
+            placeholder="Телефон *"
+            required
+          />
+          <input
+            v-model="email"
+            type="email"
+            placeholder="Email (необовʼязково)"
+          />
+        </div>
+      </div>
+
+      <!-- Доставка -->
+      <DeliverySelector v-model="delivery" />
+
+      <!-- Оплата -->
+      <div class="cf-section">
+        <PaymentSelector
+          v-model="paymentMethod"
+          :descriptions="paymentDescriptions"
+        />
+      </div>
+
+      <!-- Коментар -->
       <textarea
         v-model="comment"
-        placeholder="Коментар до замовлення"
+        placeholder="Коментар"
       ></textarea>
 
       <button
-        type="submit"
         class="checkout-form__btn"
+        type="submit"
       >
         Підтвердити замовлення
       </button>
@@ -78,50 +160,85 @@ const submitOrder = () => {
 
 <style scoped lang="scss">
 .checkout-form {
-  background: var(--clr-bg);
+  background: var(--clr-bg-soft);
   padding: var(--space-6);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--clr-border);
+  box-shadow: var(--shadow-md);
+
+  @media (max-width: 768px) {
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+  }
 
   &__title {
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+  }
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-base);
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border-light);
+
+  &:focus {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px var(--clr-accent-glow);
+    outline: none;
+  }
+}
+
+textarea {
+  resize: none;
+  min-height: 110px;
+}
+
+.cf-section {
+  margin-bottom: var(--space-6);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--clr-white-85);
+  border: 1px solid var(--clr-border-light);
+  box-shadow: var(--shadow-soft);
+  margin-top: var(--space-6);
+
+  h3 {
     font-size: var(--fs-lg);
     font-weight: 600;
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-4);
   }
+}
 
-  &__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
+.cf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
 
-    input,
-    textarea {
-      border: 1px solid var(--clr-border-light);
-      border-radius: var(--radius-md);
-      padding: var(--space-3);
-      font-size: var(--fs-sm);
-    }
-
-    textarea {
-      min-height: 80px;
-      resize: none;
-    }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
+}
 
-  &__btn {
-    margin-top: var(--space-4);
-    background: var(--clr-accent);
-    color: white;
-    font-weight: 600;
-    padding: var(--space-3);
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: background 0.2s;
+.checkout-form__btn {
+  margin-top: var(--space-6);
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--clr-accent);
+  color: #fff;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-lg);
 
-    &:hover {
-      background: var(--clr-accent-hover);
-    }
+  &:hover {
+    background: var(--clr-accent-hover);
   }
 }
 </style>

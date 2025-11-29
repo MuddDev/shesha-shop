@@ -1,0 +1,113 @@
+.delivery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.delivery__block {
+  background: var(--clr-white-85);
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-soft);
+}
+
+.delivery__title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.delivery__input {
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-base);
+  border: 1px solid var(--clr-border-light);
+  background: var(--clr-white);
+  transition: 0.2s;
+  margin: var(--space-2);
+  &:focus {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px var(--clr-accent-glow);
+    outline: none;
+  }
+}
+
+.delivery__autocomplete {
+  margin-top: 0.25rem;
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--radius-lg);
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: var(--shadow-sm);
+
+  li {
+    padding: var(--space-3);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--clr-bg-soft);
+    }
+  }
+}
+
+.delivery__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.delivery__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  cursor: pointer;
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--radius-lg);
+  background: var(--clr-white);
+  transition: 0.2s;
+
+  input {
+    display: none;
+  }
+
+  &:hover {
+    border-color: var(--clr-accent);
+    background: var(--clr-white-85);
+  }
+
+  &.active {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px var(--clr-accent-glow);
+    background: var(--clr-white);
+  }
+}
+
+.delivery__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--clr-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.delivery__info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  span {
+    font-weight: 600;
+  }
+
+  small {
+    font-size: var(--fs-xs);
+    color: var(--clr-text-subtle);
+  }
+}
