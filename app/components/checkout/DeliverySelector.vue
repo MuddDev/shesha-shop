@@ -5,7 +5,6 @@ import ds from '~/data/delivery-selector.json'
 
 const config = useRuntimeConfig()
 
-
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -31,11 +30,33 @@ watch(
 )
 
 watch(
-  local,
-  v => {
-    emit('update:modelValue', v)
-  },
-  { deep: true }
+  () => local.value.city,
+  value => emit('update:modelValue', { ...local.value })
+)
+
+watch(
+  () => local.value.cityRef,
+  value => emit('update:modelValue', { ...local.value })
+)
+
+watch(
+  () => local.value.branch,
+  value => emit('update:modelValue', { ...local.value })
+)
+
+watch(
+  () => local.value.method,
+  value => emit('update:modelValue', { ...local.value })
+)
+
+watch(
+  () => local.value.index,
+  value => emit('update:modelValue', { ...local.value })
+)
+
+watch(
+  () => local.value.address,
+  value => emit('update:modelValue', { ...local.value })
 )
 
 const citySuggestions = ref([])
@@ -50,29 +71,37 @@ const isSelectingCity = ref(false)
 const selectCity = item => {
   isSelectingCity.value = true
 
+  // Спочатку очищаємо suggestions,
+  // щоб debounce не зміг перезаписати їх
+  citySuggestions.value = []
+
   local.value.city = item.name
   local.value.cityRef = item.ref
 
-  citySuggestions.value = []
   branches.value = []
 
   loadNovaPoshtaBranches()
 
+  // Блокуємо debounce достатньо довго
   setTimeout(() => {
     isSelectingCity.value = false
-  }, 200)
+  }, 500) // було 200 — замало
 }
 
 // === DEBOUNCE search (єдиний правильний watch)
 watchDebounced(
-    () => local.value.city,
-    () => {
-      if (!local.value.city.trim() || isSelectingCity.value) return
-      searchNovaPoshtaCities()
-    },
-    { debounce: 350, maxWait: 600 }
-)
+  () => local.value.city,
+  () => {
+    if (isSelectingCity.value) return
+    if (!local.value.city.trim()) return
 
+    // якщо локальне місто вже вибране — не шукати
+    if (local.value.cityRef) return
+
+    searchNovaPoshtaCities()
+  },
+  { debounce: 350, maxWait: 600 }
+)
 
 // ⭐ Пошук міст НП
 const searchNovaPoshtaCities = async () => {
@@ -126,17 +155,6 @@ const loadNovaPoshtaBranches = async () => {
     loadingBranches.value = false
   }
 }
-
-// Watch NP method change
-watch(
-  () => local.value.method,
-  m => {
-    local.value.branch = ''
-    branches.value = []
-
-    if (m === 'nova-poshta' && local.value.cityRef) loadNovaPoshtaBranches()
-  }
-)
 
 // ⭐ Укрпошта — відділення через backend API
 const loadUkrposhtaBranches = async () => {
