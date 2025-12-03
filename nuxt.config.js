@@ -46,7 +46,8 @@ export default defineNuxtConfig({
     moduleSideEffects: ['@vueuse/core'],
 
     routeRules: {
-      '/': { swr: true, cache: { maxAge: 60 * 60 * 6 } },
+      '/': { swr: false, cache: false },
+      '/api/**': { swr: false, cache: false },
       '/collections/**': { swr: true, cache: { maxAge: 60 * 30 } },
       '/products/**': { swr: true, cache: { maxAge: 60 * 60 } },
       '/about': { swr: true, cache: { maxAge: 60 * 60 * 24 } }
