@@ -14,10 +14,12 @@ export const useTelegram = () => {
       // Виклик відбувається через SSR (CORS не чіпляється)
       await $fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: {
           chat_id: chatId,
           text,
-          parse_mode: 'Markdown'
         },
         server: true // 👈 це головне — змушує Nuxt зробити запит сервером, не браузером
       })
